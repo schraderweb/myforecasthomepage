@@ -15,11 +15,10 @@ fetch('https://api.weather.gov/gridpoints/APX/81,45/forecast/hourly?units=us')
     // Check if <dew> tag exists, if so update its content
     let dewElement = document.querySelector('dew');
     if(dewElement) {
-        dewElement.textContent =  ${dewpointF}°F`;
+        dewElement.textContent = `${dewpointF}°F`;
     }
 })
 .catch(error => console.error('Error:', error));
-
 
 
 
