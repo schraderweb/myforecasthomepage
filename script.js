@@ -6,21 +6,20 @@ fetch('https://api.weather.gov/gridpoints/APX/81,45/forecast/hourly?units=us')
     // Reduce the decimal places to 2 and convert to Fahrenheit
     let dewpointF = (dewpoint * 9/5 + 32).toFixed(2);
 
-    // Create separate elements for temperature and dew point
-    let tempElement = document.createElement('div');
-    tempElement.className = 'temp';
-    tempElement.textContent = `Temperature: ${temperature}°F`;
+    // Check if <temp> tag exists, if so update its content
+    let tempElement = document.querySelector('temp');
+    if(tempElement) {
+        tempElement.textContent = `${temperature}°F`;
+    }
 
-    let dewElement = document.createElement('div');
-    dewElement.className = 'dew';
-    dewElement.textContent = `Dew Point: ${dewpointF}°F`;
-
-    // Append the new elements to the parent element
-    let parentElement = document.querySelector('.box-large');
-    parentElement.appendChild(tempElement);
-    parentElement.appendChild(dewElement);
+    // Check if <dew> tag exists, if so update its content
+    let dewElement = document.querySelector('dew');
+    if(dewElement) {
+        dewElement.textContent =  ${dewpointF}°F`;
+    }
 })
 .catch(error => console.error('Error:', error));
+
 
 
 
