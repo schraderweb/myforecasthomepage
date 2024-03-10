@@ -129,7 +129,22 @@ fetch('https://api.weather.gov/gridpoints/APX/81,45/forecast/hourly?units=us')
 
 
 
+ // List of images
+        var images = [
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/AirMass/20240700031_GOES16-ABI-CONUS-AirMass-2500x1500.jpg',
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/Sandwich/20240700031_GOES16-ABI-CONUS-Sandwich-2500x1500.jpg',
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/GEOCOLOR/20240700031_GOES16-ABI-CONUS-GEOCOLOR-2500x1500.jpg',
+            // Add more images as needed
+        ];
 
+        // Function to select a random image from the list
+        function randomizeBackground() {
+            var randomImage = images[Math.floor(Math.random() * images.length)];
+            document.body.style.backgroundImage = "url('" + randomImage + "')";
+        }
+
+        // Call the function to set the background image when the page loads
+        window.onload = randomizeBackground;
 
 
 
