@@ -3,6 +3,10 @@
 <html>
 <head>
     <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
         .content {
             width: 500px;
             margin: 20px;
@@ -12,10 +16,13 @@
         }
         .images {
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            margin-top: 20px;
+            align-items: center;
         }
-
+        .images img {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
