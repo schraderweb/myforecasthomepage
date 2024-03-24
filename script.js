@@ -131,13 +131,12 @@ fetch('https://api.weather.gov/gridpoints/APX/81,45/forecast/hourly?units=us')
 
  // List of images
         var images = [
-            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/AirMass/20240700031_GOES16-ABI-CONUS-AirMass-2500x1500.jpg',
-            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/Sandwich/20240700031_GOES16-ABI-CONUS-Sandwich-2500x1500.jpg',
-            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/GEOCOLOR/20240700031_GOES16-ABI-CONUS-GEOCOLOR-2500x1500.jpg',
-            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/DayNightCloudMicroCombo/20240700031_GOES16-ABI-CONUS-DayNightCloudMicroCombo-2500x1500.jpg',
-            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/07/20240700031_GOES16-ABI-CONUS-07-2500x1500.jpg',
-            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/10/20240700031_GOES16-ABI-CONUS-10-2500x1500.jpg',
-            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/16/20240700031_GOES16-ABI-CONUS-16-2500x1500.jpg',
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/GEOCOLOR/20240842216_GOES16-ABI-CONUS-GEOCOLOR-2500x1500.jpg',
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/AirMass/20240842216_GOES16-ABI-CONUS-AirMass-2500x1500.jpg',
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/Sandwich/20240842216_GOES16-ABI-CONUS-Sandwich-2500x1500.jpg',
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/DayNightCloudMicroCombo/20240842216_GOES16-ABI-CONUS-DayNightCloudMicroCombo-2500x1500.jpg',
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/09/20240842216_GOES16-ABI-CONUS-09-2500x1500.jpg',
+            'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/01/20240842216_GOES16-ABI-CONUS-01-2500x1500.jpg',
             // Add more images as needed
         ];
 
