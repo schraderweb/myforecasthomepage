@@ -1,0 +1,125 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.dropdown-item:hover {
+  background-color: #0a0a0a !important;
+  transition: 0.1s;
+}
+
+.dropdown-menu {
+  background-color: #55555587 !important;
+}
+
+.dropdown-menu a {
+  color: white !important;
+}
+
+/* .nav-item .active {
+  color: red !important;
+} */
+.nav-link:hover {
+  color: red !important;
+  transition: 2s;
+}
+
+/* Set the border color to the desired color */
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8, %3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(242, 230, 236, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* body {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+} */
+
+temp {
+  color: #f5f5f5; /* Change this to the color you want */
+  font-family: Bebas Neue, sans-serif; /* Change this to the font you want */
+  font-size: 150px; /* Change this to the size you want */
+  text-shadow: 2px 2px 4px #000000;
+}
+
+dew {
+  color: #f5f5f5; /* Change this to the color you want */
+  font-family: Bebas Neue, sans-serif; /* Change this to the font you want */
+  font-size: 75px; /* Change this to the size you want */
+  text-shadow: 2px 2px 4px #000000;
+}
+
+temp,
+dew {
+  display: block;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+  margin-left: 10px;
+  margin-right: 10px;
+
+  margin-block: 20px;
+  /* height: 100vh;  */
+  /* Adjust as needed */
+
+  /* Adjust as needed */
+}
+
+.box {
+  background-color: rgba(
+    61,
+    61,
+    61,
+    0.76
+  ); /* white background with 50% opacity */
+  border: 2px solid black;
+  padding: 10px;
+  /* margin: 50px; */
+  /* width: 500px;
+  height: 500px; */
+  border-radius: 15px;
+  /* position: relative;  */
+  /* Add this line */
+  /* margin-left: -200px;  */
+  /* Adjust as needed */
+}
+
+.box-large {
+  /* left: 400px;  */
+  /* Adjust this value to move the box to the right */
+}
+
+#weatherInfo {
+  font-size: 30px;
+  font-family: Bebas Neue, sans-serif;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+#forecast {
+  font-size: 30px;
+  font-family: Bebas Neue, sans-serif;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+/* .homepage {
+  margin-left: -250px;
+} */
