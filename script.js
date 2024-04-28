@@ -112,7 +112,8 @@ fetch("https://api.weather.gov/gridpoints/APX/81,45/forecast/hourly?units=us")
 
 // List of images
 var images = [
-  "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/GEOCOLOR/GOES16-CONUS-GEOCOLOR-625x375.gif",
+   "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/GEOCOLOR/latest.jpg",
+  "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/Sandwich/2500x1500.jpg",
   // Add more images as needed
 ];
 
