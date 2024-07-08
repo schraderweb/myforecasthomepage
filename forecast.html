@@ -80,56 +80,56 @@
         <label>Morning: 
             <select id="precipitation-morning">
                 <option value="None">None</option>
-                <option value="sprinkles">Sprinkles</option>
-                <option value="rain">Rain</option>
-                <option value="heavy rain">Heavy Rain</option>
-                <option value="t-storms">Thunderstorms</option>
-                <option value="light snow">Light Snow</option>
-                <option value="snow">Snow</option>
-                <option value="heavy snow">Heavy Snow</option>
-                <option value="blizzard">Blizzard</option>
+                <option value="Sprinkles">Sprinkles</option>
+                <option value="Rain">Rain</option>
+                <option value="Heavy Rain">Heavy Rain</option>
+                <option value="Thunderstorms">Thunderstorms</option>
+                <option value="Light Snow">Light Snow</option>
+                <option value="Snow">Snow</option>
+                <option value="Heavy Snow">Heavy Snow</option>
+                <option value="Blizzard">Blizzard</option>
             </select>
             <button type="button" onclick="togglePossible('morning')">Possible</button>
         </label>
         <label>Afternoon: 
             <select id="precipitation-afternoon">
                 <option value="None">None</option>
-                <option value="sprinkles">Sprinkles</option>
-                <option value="rain">Rain</option>
-                <option value="heavy rain">Heavy Rain</option>
-                <option value="t-storms">Thunderstorms</option>
-                <option value="light snow">Light Snow</option>
-                <option value="snow">Snow</option>
-                <option value="heavy snow">Heavy Snow</option>
-                <option value="blizzard">Blizzard</option>
+                <option value="Sprinkles">Sprinkles</option>
+                <option value="Rain">Rain</option>
+                <option value="Heavy Rain">Heavy Rain</option>
+                <option value="Thunderstorms">Thunderstorms</option>
+                <option value="Light Snow">Light Snow</option>
+                <option value="Snow">Snow</option>
+                <option value="Heavy Snow">Heavy Snow</option>
+                <option value="Blizzard">Blizzard</option>
             </select>
             <button type="button" onclick="togglePossible('afternoon')">Possible</button>
         </label>
         <label>Evening: 
             <select id="precipitation-evening">
                 <option value="None">None</option>
-                <option value="sprinkles">Sprinkles</option>
-                <option value="rain">Rain</option>
-                <option value="heavy rain">Heavy Rain</option>
-                <option value="t-storms">Thunderstorms</option>
-                <option value="light snow">Light Snow</option>
-                <option value="snow">Snow</option>
-                <option value="heavy snow">Heavy Snow</option>
-                <option value="blizzard">Blizzard</option>
+                <option value="Sprinkles">Sprinkles</option>
+                <option value="Rain">Rain</option>
+                <option value="Heavy Rain">Heavy Rain</option>
+                <option value="Thunderstorms">Thunderstorms</option>
+                <option value="Light Snow">Light Snow</option>
+                <option value="Snow">Snow</option>
+                <option value="Heavy Snow">Heavy Snow</option>
+                <option value="Blizzard">Blizzard</option>
             </select>
             <button type="button" onclick="togglePossible('evening')">Possible</button>
         </label>
         <label>Night: 
             <select id="precipitation-night">
                 <option value="None">None</option>
-                <option value="sprinkles">Sprinkles</option>
-                <option value="rain">Rain</option>
-                <option value="heavy rain">Heavy Rain</option>
-                <option value="t-storms">Thunderstorms</option>
-                <option value="light snow">Light Snow</option>
-                <option value="snow">Snow</option>
-                <option value="heavy snow">Heavy Snow</option>
-                <option value="blizzard">Blizzard</option>
+                <option value="Sprinkles">Sprinkles</option>
+                <option value="Rain">Rain</option>
+                <option value="Heavy Rain">Heavy Rain</option>
+                <option value="Thunderstorms">Thunderstorms</option>
+                <option value="Light Snow">Light Snow</option>
+                <option value="Snow">Snow</option>
+                <option value="Heavy Snow">Heavy Snow</option>
+                <option value="Blizzard">Blizzard</option>
             </select>
             <button type="button" onclick="togglePossible('night')">Possible</button>
         </label>
@@ -157,10 +157,11 @@
 <script>
     function togglePossible(time) {
         const select = document.getElementById(`precipitation-${time}`);
-        if (!select.value.startsWith('Possible ')) {
-            select.value = 'Possible ' + select.value;
+        const selectedOption = select.options[select.selectedIndex];
+        if (!selectedOption.text.startsWith('Possible ')) {
+            selectedOption.text = 'Possible ' + selectedOption.text;
         } else {
-            select.value = select.value.replace('Possible ', '');
+            selectedOption.text = selectedOption.text.replace('Possible ', '');
         }
     }
 
