@@ -12,17 +12,17 @@
             margin: 0;
             padding: 20px;
         }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 20px;
-        }
         .section {
+            margin-bottom: 20px;
+            flex: 1;
+            margin-right: 20px;
             background-color: #ffffff; /* White background for sections */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for sections */
+        }
+        .section:last-child {
+            margin-right: 0; /* Remove margin from the last section */
         }
         .section label {
             display: block;
@@ -31,12 +31,16 @@
         .section input[type="checkbox"] {
             margin-right: 10px;
         }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
         h1, h2 {
             text-align: center;
         }
         button {
             display: block;
-            margin: 20px auto;
+            margin: 0 auto;
             padding: 10px 20px;
             background-color: #007BFF; /* Blue background for button */
             color: #ffffff; /* White text for button */
@@ -53,8 +57,8 @@
 
 <h1>Weather Forecast Maker</h1>
 
-<div class="grid-container">
-    <div class="section">
+<div class="container">
+    <div class="section" id="clouds">
         <h2>Clouds</h2>
         <label>Morning: 
             <select id="clouds-morning">
@@ -98,7 +102,7 @@
         </label>
     </div>
 
-    <div class="section">
+    <div class="section" id="precipitation">
         <h2>Precipitation</h2>
         <label>Morning: 
             <select id="precipitation-morning">
@@ -158,7 +162,7 @@
         </label>
     </div>
 
-    <div class="section">
+    <div class="section" id="winds">
         <h2>Winds</h2>
         <label>Speed: 
             <input type="number" id="wind-speed" min="0" step="1" value="0"> mph
@@ -217,21 +221,4 @@
         // Generate wind forecast
         forecast += generateWindForecast(windSpeed, windDirection, windGusts);
 
-        document.getElementById('forecast').innerText = forecast;
-    }
-
-    function generateCloudsForecast(clouds) {
-        return `Clouds - Morning: ${clouds.morning}, Afternoon: ${clouds.afternoon}, Evening: ${clouds.evening}, Night: ${clouds.night}\n`;
-    }
-
-    function generatePrecipitationForecast(precipitation) {
-        return `Precipitation - Morning: ${precipitation.morning}, Afternoon: ${precipitation.afternoon}, Evening: ${precipitation.evening}, Night: ${precipitation.night}\n`;
-    }
-
-    function generateWindForecast(speed, direction, gusts) {
-        return `Winds - Speed: ${speed} mph, Direction: ${direction}, Gusts: ${gusts} mph\n`;
-    }
-</script>
-
-</body>
-</html>
+        document
