@@ -1,162 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-    <center> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast Maker</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Weather Forecast Maker</h1>
     <form id="forecastForm">
-        <div>
+        <div class="section">
             <h2>Clouds</h2>
-            <label for="morningClouds">Morning:</label>
-            <select id="morningClouds">
-                <option value="Clear">Clear</option>
-                <option value="Sunny">Sunny</option>
-                <option value="Partly Cloudy">Partly Cloudy</option>
-                <option value="Partly Sunny">Partly Sunny</option>
-                <option value="Mostly Cloudy">Mostly Cloudy</option>
-                <option value="Cloudy">Cloudy</option>
+            <label for="cloudsMorning">Morning:</label>
+            <select id="cloudsMorning">
+                <option value="clear">Clear</option>
+                <option value="sunny">Sunny</option>
+                <option value="partlySunny">Partly Sunny</option>
+                <option value="partlyCloudy">Partly Cloudy</option>
+                <option value="mostlyCloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
             </select>
-            <label for="afternoonClouds">Afternoon:</label>
-            <select id="afternoonClouds">
-                <option value="Clear">Clear</option>
-                <option value="Sunny">Sunny</option>
-                <option value="Partly Cloudy">Partly Cloudy</option>
-                <option value="Partly Sunny">Partly Sunny</option>
-                <option value="Mostly Cloudy">Mostly Cloudy</option>
-                <option value="Cloudy">Cloudy</option>
+            <label for="cloudsAfternoon">Afternoon:</label>
+            <select id="cloudsAfternoon">
+                <option value="clear">Clear</option>
+                <option value="sunny">Sunny</option>
+                <option value="partlySunny">Partly Sunny</option>
+                <option value="partlyCloudy">Partly Cloudy</option>
+                <option value="mostlyCloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
             </select>
-            <label for="eveningClouds">Evening:</label>
-            <select id="eveningClouds">
-                <option value="Clear">Clear</option>
-                <option value="Sunny">Sunny</option>
-                <option value="Partly Cloudy">Partly Cloudy</option>
-                <option value="Partly Sunny">Partly Sunny</option>
-                <option value="Mostly Cloudy">Mostly Cloudy</option>
-                <option value="Cloudy">Cloudy</option>
+            <label for="cloudsEvening">Evening:</label>
+            <select id="cloudsEvening">
+                <option value="clear">Clear</option>
+                <option value="sunny">Sunny</option>
+                <option value="partlySunny">Partly Sunny</option>
+                <option value="partlyCloudy">Partly Cloudy</option>
+                <option value="mostlyCloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
             </select>
-            <label for="nightClouds">Night:</label>
-            <select id="nightClouds">
-               <option value="Clear">Clear</option>
-                <option value="Sunny">Sunny</option>
-                <option value="Partly Cloudy">Partly Cloudy</option>
-                <option value="Partly Sunny">Partly Sunny</option>
-                <option value="Mostly Cloudy">Mostly Cloudy</option>
-                <option value="Cloudy">Cloudy</option>
+            <label for="cloudsNight">Night:</label>
+            <select id="cloudsNight">
+                <option value="clear">Clear</option>
+                <option value="sunny">Sunny</option>
+                <option value="partlySunny">Partly Sunny</option>
+                <option value="partlyCloudy">Partly Cloudy</option>
+                <option value="mostlyCloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
             </select>
         </div>
-        <div>
+
+        <div class="section">
             <h2>Precipitation</h2>
-            <label for="morningPrecip">Morning:</label>
-            <select id="morningPrecip">
-                <option value="None">None</option>
-                <option value="Sprinkles">Sprinkles</option>
-                <option value="Rain">Rain</option>
-                <option value="Heavy Rain">Heavy Rain</option>
-                <option value="T-Storms">Thunderstorms</option>
-                <option value="Light Snow">Light Snow</option>
-                <option value="Snow">Snow</option>
-                <option value="Heavy Snow">Heavy Snow</option>
-                <option value="Blizzard">Blizzard</option>
-                <option value="Possible Sprinkles">Possible Sprinkles</option>
-                <option value="Possible Rain">Possible Rain</option>
-                <option value="Possible Heavy Rain">Possible Heavy Rain</option>
-                <option value="Possible T-Storms">Possible Thunderstorms</option>
-                <option value="Possible Light Snow">Possible Light Snow</option>
-                <option value="Possible Snow">Possible Snow</option>
-                <option value="Possible Heavy Snow">Possible Heavy Snow</option>
-                <option value="Possible Blizzard">Possible Blizzard</option>
+            <label for="precipitationMorning">Morning:</label>
+            <select id="precipitationMorning">
+                <option value="none">None</option>
+                <option value="sprinkles">Sprinkles</option>
+                <option value="rain">Rain</option>
+                <option value="heavyRain">Heavy Rain</option>
+                <option value="tStorms">Thunderstorms</option>
+                <option value="lightSnow">Light Snow</option>
+                <option value="snow">Snow</option>
+                <option value="heavySnow">Heavy Snow</option>
+                <option value="blizzard">Blizzard</option>
             </select>
-            <label for="afternoonPrecip">Afternoon:</label>
-            <select id="afternoonPrecip">
-                <option value="None">None</option>
-                <option value="Sprinkles">Sprinkles</option>
-                <option value="Rain">Rain</option>
-                <option value="Heavy Rain">Heavy Rain</option>
-                <option value="T-Storms">Thunderstorms</option>
-                <option value="Light Snow">Light Snow</option>
-                <option value="Snow">Snow</option>
-                <option value="Heavy Snow">Heavy Snow</option>
-                <option value="Blizzard">Blizzard</option>
-                <option value="Possible Sprinkles">Possible Sprinkles</option>
-                <option value="Possible Rain">Possible Rain</option>
-                <option value="Possible Heavy Rain">Possible Heavy Rain</option>
-                <option value="Possible T-Storms">Possible Thunderstorms</option>
-                <option value="Possible Light Snow">Possible Light Snow</option>
-                <option value="Possible Snow">Possible Snow</option>
-                <option value="Possible Heavy Snow">Possible Heavy Snow</option>
-                <option value="Possible Blizzard">Possible Blizzard</option>
+            <input type="checkbox" id="precipitationMorningPossible"> Possible
+
+            <label for="precipitationAfternoon">Afternoon:</label>
+            <select id="precipitationAfternoon">
+                <option value="none">None</option>
+                <option value="sprinkles">Sprinkles</option>
+                <option value="rain">Rain</option>
+                <option value="heavyRain">Heavy Rain</option>
+                <option value="tStorms">Thunderstorms</option>
+                <option value="lightSnow">Light Snow</option>
+                <option value="snow">Snow</option>
+                <option value="heavySnow">Heavy Snow</option>
+                <option value="blizzard">Blizzard</option>
             </select>
-            <label for="eveningPrecip">Evening:</label>
-            <select id="eveningPrecip">
-               <option value="None">None</option>
-                <option value="Sprinkles">Sprinkles</option>
-                <option value="Rain">Rain</option>
-                <option value="Heavy Rain">Heavy Rain</option>
-                <option value="T-Storms">Thunderstorms</option>
-                <option value="Light Snow">Light Snow</option>
-                <option value="Snow">Snow</option>
-                <option value="Heavy Snow">Heavy Snow</option>
-                <option value="Blizzard">Blizzard</option>
-                <option value="Possible Sprinkles">Possible Sprinkles</option>
-                <option value="Possible Rain">Possible Rain</option>
-                <option value="Possible Heavy Rain">Possible Heavy Rain</option>
-                <option value="Possible T-Storms">Possible Thunderstorms</option>
-                <option value="Possible Light Snow">Possible Light Snow</option>
-                <option value="Possible Snow">Possible Snow</option>
-                <option value="Possible Heavy Snow">Possible Heavy Snow</option>
-                <option value="Possible Blizzard">Possible Blizzard</option>
+            <input type="checkbox" id="precipitationAfternoonPossible"> Possible
+
+            <label for="precipitationEvening">Evening:</label>
+            <select id="precipitationEvening">
+                <option value="none">None</option>
+                <option value="sprinkles">Sprinkles</option>
+                <option value="rain">Rain</option>
+                <option value="heavyRain">Heavy Rain</option>
+                <option value="tStorms">Thunderstorms</option>
+                <option value="lightSnow">Light Snow</option>
+                <option value="snow">Snow</option>
+                <option value="heavySnow">Heavy Snow</option>
+                <option value="blizzard">Blizzard</option>
             </select>
-            <label for="nightPrecip">Night:</label>
-            <select id="nightPrecip">
-               <option value="None">None</option>
-                <option value="Sprinkles">Sprinkles</option>
-                <option value="Rain">Rain</option>
-                <option value="Heavy Rain">Heavy Rain</option>
-                <option value="T-Storms">Thunderstorms</option>
-                <option value="Light Snow">Light Snow</option>
-                <option value="Snow">Snow</option>
-                <option value="Heavy Snow">Heavy Snow</option>
-                <option value="Blizzard">Blizzard</option>
-                <option value="Possible Sprinkles">Possible Sprinkles</option>
-                <option value="Possible Rain">Possible Rain</option>
-                <option value="Possible Heavy Rain">Possible Heavy Rain</option>
-                <option value="Possible T-Storms">Possible Thunderstorms</option>
-                <option value="Possible Light Snow">Possible Light Snow</option>
-                <option value="Possible Snow">Possible Snow</option>
-                <option value="Possible Heavy Snow">Possible Heavy Snow</option>
-                <option value="Possible Blizzard">Possible Blizzard</option>
+            <input type="checkbox" id="precipitationEveningPossible"> Possible
+
+            <label for="precipitationNight">Night:</label>
+            <select id="precipitationNight">
+                <option value="none">None</option>
+                <option value="sprinkles">Sprinkles</option>
+                <option value="rain">Rain</option>
+                <option value="heavyRain">Heavy Rain</option>
+                <option value="tStorms">Thunderstorms</option>
+                <option value="lightSnow">Light Snow</option>
+                <option value="snow">Snow</option>
+                <option value="heavySnow">Heavy Snow</option>
+                <option value="blizzard">Blizzard</option>
             </select>
+            <input type="checkbox" id="precipitationNightPossible"> Possible
         </div>
-        <div>
+
+        <div class="section">
             <h2>Winds</h2>
             <label for="windSpeed">Speed (mph):</label>
-            <input type="number" id="windSpeed" min="0">
+            <input type="number" id="windSpeed" min="0" max="100" step="1">
             <label for="windDirection">Direction:</label>
             <select id="windDirection">
-                <option value="North">North</option>
-                <option value="Northeast">Northeast</option>
-                <option value="East">East</option>
-                <option value="Southeast">Southeast</option>
-                <option value="South">South</option>
-                <option value="Southwest">Southwest</option>
-                <option value="West">West</option>
-                <option value="Northwest">Northwest</option>
-                <option value="Calm">Calm</option>
+                <option value="none">None</option>
+                <option value="north">North</option>
+                <option value="northeast">Northeast</option>
+                <option value="east">East</option>
+                <option value="southeast">Southeast</option>
+                <option value="south">South</option>
+                <option value="southwest">Southwest</option>
+                <option value="west">West</option>
+                <option value="northwest">Northwest</option>
             </select>
             <label for="windGusts">Gusts (mph):</label>
-            <input type="number" id="windGusts" min="0">
+            <input type="number" id="windGusts" min="0" max="100" step="1">
         </div>
+
         <button type="button" onclick="generateForecast()">Generate Forecast</button>
     </form>
-    <h2>Forecast</h2>
-    <p id="forecast"></p>
 
-    <script src="forecast.js"></script>
+    <div id="forecastOutput"></div>
+
+    <script>
+        function generateForecast() {
+            const clouds = {
+                morning: document.getElementById('cloudsMorning').value,
+                afternoon: document.getElementById('cloudsAfternoon').value,
+                evening: document.getElementById('cloudsEvening').value,
+                night: document.getElementById('cloudsNight').value
+            };
+
+            const precipitation = {
+                morning: {
+                    type: document.getElementById('precipitationMorning').value,
+                    possible: document.getElementById('precipitationMorningPossible').checked
+                },
+                afternoon: {
+                    type: document.getElementById('precipitationAfternoon').value,
+                    possible: document.getElementById('precipitationAfternoonPossible').checked
+                },
+                evening: {
+                    type: document.getElementById('precipitationEvening').value,
+                    possible: document.getElementById('precipitationEveningPossible').checked
+                },
+                night: {
+                    type: document.getElementById('precipitationNight').value,
+                    possible: document.getElementById('precipitationNightPossible').checked
+                }
+            };
+
+            const windSpeed = document.getElementById('windSpeed').value;
+            const windDirection = document.getElementById('windDirection').value;
+            const windGusts = document.getElementById('windGusts').value;
+
+            // Generate the forecast text
+            let forecast = '';
+
+            if (clouds.morning !== 'clear') {
+                forecast += `${clouds.morning} in the morning`;
+            }
+            if (clouds.afternoon !== 'clear') {
+                if (forecast) forecast += ', ';
+                forecast += `${clouds.afternoon} in the afternoon`;
+            }
+            if (clouds.evening !== 'clear') {
+                if (forecast) forecast += ', ';
+                forecast += `${clouds.evening} in the evening`;
+            }
+            if (clouds.night !== 'clear') {
+                if (forecast) forecast += ', ';
+                forecast += `${clouds.night} at night`;
+            }
+
+            if (precipitation.morning.type !== 'none') {
+                if (forecast) forecast += ', ';
+                forecast += `${precipitation.morning.possible ? 'Possible ' : ''}${precipitation.morning.type} in the morning`;
+            }
+            if (precipitation.afternoon.type !== 'none') {
+                if (forecast) forecast += ', ';
+                forecast += `${precipitation.afternoon.possible ? 'Possible ' : ''}${precipitation.afternoon.type} in the afternoon`;
+            }
+            if (precipitation.evening.type !== 'none') {
+                if (forecast) forecast += ', ';
+                forecast += `${precipitation.evening.possible ? 'Possible ' : ''}${precipitation.evening.type} in the evening`;
+            }
+            if (precipitation.night.type !== 'none') {
+                if (forecast) forecast += ', ';
+                forecast += `${precipitation.night.possible ? 'Possible ' : ''}${precipitation.night.type} at night`;
+            }
+
+            if (windSpeed > 0) {
+                if (forecast) forecast += '. ';
+                forecast += `Winds ${windDirection} around ${windSpeed} mph`;
+                if (windGusts > 0) {
+                    forecast += ` with gusts up to ${windGusts} mph`;
+                }
+            }
+
+            document.getElementById('forecastOutput').innerText = forecast + '.';
+        }
+    </script>
 </body>
-</center>
-
 </html>
