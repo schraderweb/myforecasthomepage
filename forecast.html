@@ -13,32 +13,118 @@
 <body>
     <div class="section">
         <h2>Weather Conditions</h2>
-        <label for="timeOfDay">Time of Day</label>
-        <select id="timeOfDay">
-            <option value="earlyMorning">Early Morning</option>
-            <option value="morning">Morning</option>
-            <option value="afternoon">Afternoon</option>
-            <option value="evening">Evening</option>
-            <option value="lateNight">Late Night</option>
-        </select>
-
-        <label for="weatherType">Weather Type</label>
-        <select id="weatherType">
-            <option value="clear">Clear</option>
-            <option value="sunny">Sunny</option>
-            <option value="partlyCloudy">Partly Cloudy</option>
-            <option value="partlySunny">Partly Sunny</option>
-            <option value="mostlyCloudy">Mostly Cloudy</option>
-            <option value="cloudy">Cloudy</option>
-            <option value="sprinkles">Sprinkles</option>
-            <option value="rain">Rain</option>
-            <option value="heavyRain">Heavy Rain</option>
-            <option value="thunderstorms">Thunderstorms</option>
-            <option value="lightSnow">Light Snow</option>
-            <option value="snow">Snow</option>
-            <option value="heavySnow">Heavy Snow</option>
-            <option value="blizzard">Blizzard</option>
-        </select>
+        <div>
+            <h3>Morning</h3>
+            <label for="morningClouds">Clouds</label>
+            <select id="morningClouds">
+                <option value="clear">Clear</option>
+                <option value="sunny">Sunny</option>
+                <option value="partlyCloudy">Partly Cloudy</option>
+                <option value="partlySunny">Partly Sunny</option>
+                <option value="mostlyCloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
+            </select>
+            <label for="morningPrecipitation">Precipitation</label>
+            <select id="morningPrecipitation">
+                <option value="none">None</option>
+                <option value="sprinkles">Sprinkles</option>
+                <option value="rain">Rain</option>
+                <option value="heavyRain">Heavy Rain</option>
+                <option value="tStorms">Thunderstorms</option>
+                <option value="lightSnow">Light Snow</option>
+                <option value="snow">Snow</option>
+                <option value="heavySnow">Heavy Snow</option>
+                <option value="blizzard">Blizzard</option>
+            </select>
+            <label>
+                <input type="checkbox" id="morningPossible">
+                Possible
+            </label>
+        </div>
+        <div>
+            <h3>Afternoon</h3>
+            <label for="afternoonClouds">Clouds</label>
+            <select id="afternoonClouds">
+                <option value="clear">Clear</option>
+                <option value="sunny">Sunny</option>
+                <option value="partlyCloudy">Partly Cloudy</option>
+                <option value="partlySunny">Partly Sunny</option>
+                <option value="mostlyCloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
+            </select>
+            <label for="afternoonPrecipitation">Precipitation</label>
+            <select id="afternoonPrecipitation">
+                <option value="none">None</option>
+                <option value="sprinkles">Sprinkles</option>
+                <option value="rain">Rain</option>
+                <option value="heavyRain">Heavy Rain</option>
+                <option value="tStorms">Thunderstorms</option>
+                <option value="lightSnow">Light Snow</option>
+                <option value="snow">Snow</option>
+                <option value="heavySnow">Heavy Snow</option>
+                <option value="blizzard">Blizzard</option>
+            </select>
+            <label>
+                <input type="checkbox" id="afternoonPossible">
+                Possible
+            </label>
+        </div>
+        <div>
+            <h3>Evening</h3>
+            <label for="eveningClouds">Clouds</label>
+            <select id="eveningClouds">
+                <option value="clear">Clear</option>
+                <option value="sunny">Sunny</option>
+                <option value="partlyCloudy">Partly Cloudy</option>
+                <option value="partlySunny">Partly Sunny</option>
+                <option value="mostlyCloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
+            </select>
+            <label for="eveningPrecipitation">Precipitation</label>
+            <select id="eveningPrecipitation">
+                <option value="none">None</option>
+                <option value="sprinkles">Sprinkles</option>
+                <option value="rain">Rain</option>
+                <option value="heavyRain">Heavy Rain</option>
+                <option value="tStorms">Thunderstorms</option>
+                <option value="lightSnow">Light Snow</option>
+                <option value="snow">Snow</option>
+                <option value="heavySnow">Heavy Snow</option>
+                <option value="blizzard">Blizzard</option>
+            </select>
+            <label>
+                <input type="checkbox" id="eveningPossible">
+                Possible
+            </label>
+        </div>
+        <div>
+            <h3>Night</h3>
+            <label for="nightClouds">Clouds</label>
+            <select id="nightClouds">
+                <option value="clear">Clear</option>
+                <option value="sunny">Sunny</option>
+                <option value="partlyCloudy">Partly Cloudy</option>
+                <option value="partlySunny">Partly Sunny</option>
+                <option value="mostlyCloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
+            </select>
+            <label for="nightPrecipitation">Precipitation</label>
+            <select id="nightPrecipitation">
+                <option value="none">None</option>
+                <option value="sprinkles">Sprinkles</option>
+                <option value="rain">Rain</option>
+                <option value="heavyRain">Heavy Rain</option>
+                <option value="tStorms">Thunderstorms</option>
+                <option value="lightSnow">Light Snow</option>
+                <option value="snow">Snow</option>
+                <option value="heavySnow">Heavy Snow</option>
+                <option value="blizzard">Blizzard</option>
+            </select>
+            <label>
+                <input type="checkbox" id="nightPossible">
+                Possible
+            </label>
+        </div>
     </div>
 
     <div class="section">
@@ -57,14 +143,6 @@
             <option value="W">West</option>
             <option value="NW">Northwest</option>
         </select>
-    </div>
-
-    <div class="section">
-        <h2>Additional Options</h2>
-        <label>
-            <input type="checkbox" id="possibleRain">
-            Possible Rain
-        </label>
         <label>
             <input type="checkbox" id="gusts">
             Wind Gusts
@@ -76,33 +154,65 @@
     <div class="output" id="forecastOutput"></div>
 
     <script>
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
         function generateForecast() {
             // Collect selected values
-            const timeOfDay = document.getElementById('timeOfDay').value;
-            const weatherType = document.getElementById('weatherType').value;
+            const timesOfDay = ['morning', 'afternoon', 'evening', 'night'];
+            const weatherTypes = timesOfDay.map(time => ({
+                clouds: document.getElementById(`${time}Clouds`).value,
+                precipitation: document.getElementById(`${time}Precipitation`).value,
+                possible: document.getElementById(`${time}Possible`).checked
+            }));
+
             const windSpeed = document.getElementById('windSpeed').value;
             const windDirection = document.getElementById('windDirection').value;
-            const possibleRain = document.getElementById('possibleRain').checked;
             const gusts = document.getElementById('gusts').checked;
 
             // Build the forecast string
             let forecast = '';
+            let previousCondition = '';
 
-            if (possibleRain) {
-                forecast += 'Possible ';
-            }
+            timesOfDay.forEach((time, index) => {
+                let cloud = weatherTypes[index].clouds;
+                let precipitation = weatherTypes[index].precipitation;
+                let possible = weatherTypes[index].possible;
 
-            forecast += `${weatherType.charAt(0).toUpperCase() + weatherType.slice(1)} in the ${timeOfDay.replace(/([A-Z])/g, ' $1').toLowerCase()}`;
+                if (precipitation !== 'none') {
+                    if (possible) {
+                        forecast += `Possible ${precipitation} in the ${time}. `;
+                    } else {
+                        forecast += `${capitalizeFirstLetter(precipitation)} in the ${time}. `;
+                    }
+                } else {
+                    forecast += `${capitalizeFirstLetter(cloud)} in the ${time}. `;
+                }
 
+                // Check for clearing skies
+                if (index > 0 && weatherTypes[index - 1].clouds === 'cloudy' && cloud === 'clear') {
+                    forecast = forecast.replace(`${capitalizeFirstLetter(cloud)} in the ${time}. `, `Clearing skies in the ${time}. `);
+                }
+
+                // Combine similar conditions
+                if (index > 0 && weatherTypes[index - 1].clouds === cloud && weatherTypes[index - 1].precipitation === precipitation) {
+                    forecast = forecast.replace(`                    ${capitalizeFirstLetter(cloud)} in the ${timesOfDay[index - 1]}. `, ` ${capitalizeFirstLetter(cloud)} in the ${timesOfDay[index - 1]} and ${time}. `);
+                }
+            });
+
+            // Handle wind conditions
             if (windSpeed > 0) {
-                forecast += ` with ${windDirection} winds around ${windSpeed} mph`;
+                forecast += `Winds from the ${windDirection} at around ${windSpeed} mph`;
             } else {
-                forecast += ' with calm winds';
+                forecast += 'Calm winds';
             }
 
             if (gusts) {
-                forecast += ' and wind gusts';
+                forecast += ' with gusts';
             }
+
+            forecast += '.';
 
             // Display the forecast
             document.getElementById('forecastOutput').textContent = forecast;
@@ -110,3 +220,4 @@
     </script>
 </body>
 </html>
+
