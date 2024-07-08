@@ -5,167 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast Generator</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .forecast-container { margin: 20px; }
-        .section { margin-bottom: 15px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .section label {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div class="forecast-container">
-        <h1>Weather Forecast Generator</h1>
-
+    <h1>Weather Forecast Generator</h1>
+    <form id="forecastForm">
         <div class="section">
-            <h2>Clouds</h2>
-            <label for="clouds">Select cloud coverage:</label>
+            <label for="clouds">Clouds:</label>
             <select id="clouds">
-                <option value="none">None</option>
-                <option value="partly-cloudy">Partly Cloudy</option>
-                <option value="mostly-cloudy">Mostly Cloudy</option>
-                <option value="cloudy">Cloudy</option>
+                <option value="">Select</option>
+                <option value="Clear/Sunny">Clear/Sunny</option>
+                <option value="Mostly Sunny">Mostly Sunny</option>
+                <option value="Partly Cloudy/Partly Sunny">Partly Cloudy/Partly Sunny</option>
+                <option value="Mostly Cloudy">Mostly Cloudy</option>
+                <option value="Cloudy">Cloudy</option>
             </select>
         </div>
-
         <div class="section">
-            <h2>Sunshine</h2>
-            <label for="sunshine">Select sunshine:</label>
-            <select id="sunshine">
-                <option value="none">None</option>
-                <option value="partly-sunny">Partly Sunny</option>
-                <option value="mostly-sunny">Mostly Sunny</option>
-                <option value="sunny">Sunny</option>
-            </select>
-        </div>
-
-        <div class="section">
-            <h2>Rain</h2>
-            <label for="rain">Select rain:</label>
-            <select id="rain">
-                <option value="none">None</option>
-                <option value="light-rain">Light Rain</option>
-                <option value="moderate-rain">Moderate Rain</option>
-                <option value="heavy-rain">Heavy Rain</option>
-                <option value="possible">Possible</option>
-            </select>
-        </div>
-
-        <div class="section">
-            <h2>Time Periods</h2>
-            <label for="time-period">Select time period:</label>
-            <select id="time-period">
-                <option value="early-morning">Early Morning</option>
+            <label for="cloudsTime">Clouds Time:</label>
+            <select id="cloudsTime">
+                <option value="">Select</option>
                 <option value="morning">Morning</option>
                 <option value="afternoon">Afternoon</option>
                 <option value="evening">Evening</option>
-                <option value="late-night">Late Night</option>
-                <option value="all-day">All Day</option>
+                <option value="night">Night</option>
             </select>
         </div>
-
         <div class="section">
-            <h2>Wind</h2>
-            <label for="wind-speed">Wind speed (mph):</label>
-            <input type="number" id="wind-speed" min="0" max="100" step="1" value="0">
-            <label for="wind-direction">Direction:</label>
-            <select id="wind-direction">
+            <label for="precipitation">Precipitation:</label>
+            <select id="precipitation">
+                <option value="">Select</option>
+                <option value="None">None</option>
+                <option value="Rain">Rain</option>
+                <option value="Thunderstorms">Thunderstorms</option>
+                <option value="Snow">Snow</option>
+                <option value="Blizzard">Blizzard</option>
+            </select>
+        </div>
+        <div class="section">
+            <label for="precipitationTime">Precipitation Time:</label>
+            <select id="precipitationTime">
+                <option value="">Select</option>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+                <option value="night">Night</option>
+            </select>
+        </div>
+        <div class="section">
+            <label for="precipitationType">Precipitation Type:</label>
+            <select id="precipitationType">
+                <option value="">Select</option>
+                <option value="possible">Possible</option>
                 <option value="none">None</option>
+            </select>
+        </div>
+        <div class="section">
+            <label for="windDirection">Wind Direction:</label>
+            <select id="windDirection">
+                <option value="">Select</option>
                 <option value="north">North</option>
                 <option value="south">South</option>
                 <option value="east">East</option>
                 <option value="west">West</option>
             </select>
-            <label><input type="checkbox" id="wind-gusts"> Gusts</label>
         </div>
-
         <div class="section">
-            <h2>Special Conditions</h2>
-            <label><input type="checkbox" id="thunderstorms"> Thunderstorms</label>
-            <label><input type="checkbox" id="blizzard"> Blizzard</label>
-            <label><input type="checkbox" id="heavy-snow"> Heavy Snow</label>
-            <label><input type="checkbox" id="snow"> Snow</label>
-            <label><input type="checkbox" id="light-snow"> Light Snow</label>
+            <label for="windSpeed">Wind Speed (mph):</label>
+            <input type="number" id="windSpeed" min="0" max="100">
         </div>
-
-        <button onclick="generateForecast()">Generate Forecast</button>
-
-        <div id="forecast-output" class="section"></div>
-    </div>
-
-    <script src="forecast.js"></script>
-</body>
-</html>
-
-    <!-- Generate Forecast -->
-    <button onclick="generateForecast()">Generate Forecast</button>
-
-    <!-- Forecast Output -->
-    <h2>Generated Forecast</h2>
+        <div class="section">
+            <label for="windGusts">Wind Gusts:</label>
+            <select id="windGusts">
+                <option value="none">None</option>
+                <option value="gusts">Gusts</option>
+            </select>
+        </div>
+        <button type="button" onclick="generateForecast()">Generate Forecast</button>
+    </form>
+    <h2>Generated Forecast:</h2>
     <p id="forecastOutput"></p>
 
-    <script src="forecast.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-<script>
-function generateForecast() {
-    // Get values from HTML
-    const clouds = document.getElementById('clouds').value;
-    const sunshine = document.getElementById('sunshine').value;
-    const rain = document.getElementById('rain').value;
-    const timePeriod = document.getElementById('time-period').value;
-    const windSpeed = parseInt(document.getElementById('wind-speed').value);
-    const windDirection = document.getElementById('wind-direction').value;
-    const windGusts = document.getElementById('wind-gusts').checked;
-
-    const thunderstorms = document.getElementById('thunderstorms').checked;
-    const blizzard = document.getElementById('blizzard').checked;
-    const heavySnow = document.getElementById('heavy-snow').checked;
-    const snow = document.getElementById('snow').checked;
-    const lightSnow = document.getElementById('light-snow').checked;
-
-    let forecast = [];
-
-    // Cloud coverage
-    if (clouds !== 'none') {
-        forecast.push(`${clouds.replace('-', ' ')} skies`);
-    }
-
-    // Sunshine
-    if (sunshine !== 'none') {
-        forecast.push(sunshine.replace('-', ' '));
-    }
-
-    // Rain
-    if (rain !== 'none') {
-        forecast.push(rain === 'possible' ? 'possible rain' : rain.replace('-', ' '));
-    }
-
-    // Special conditions
-    if (thunderstorms) forecast.push('possible thunderstorms');
-    if (blizzard) forecast.push('blizzard conditions');
-    if (heavySnow) forecast.push('heavy snow');
-    if (snow) forecast.push('snow');
-    if (lightSnow) forecast.push('light snow');
-
-    // Time period
-    if (timePeriod !== 'all-day') {
-        forecast.push(`in the ${timePeriod.replace('-', ' ')}`);
-    } else {
-        forecast.push('all day');
-    }
-
-    // Wind
-    if (windSpeed > 0 || windGusts) {
-        let windDesc = windSpeed === 0 ? 'calm winds' : `winds around ${windSpeed} mph`;
-        if (windDirection !== 'none') {
-            windDesc += ` from the ${windDirection}`;
-        }
-        if (windGusts) {
-            windDesc += ' with gusts';
-        }
-        forecast.push(windDesc);
-    }
-
-    // Combine forecast
-    document.getElementById('forecast-output').innerText = forecast.join(' ');
-}
-
