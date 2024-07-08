@@ -25,4 +25,22 @@ function generateForecast() {
 
     // Wind information
     const windSpeed = document.getElementById('wind-speed').value;
-    const windDirection = document.getElementById
+    const windDirection = document.getElementById('wind-direction').value;
+    const windGusts = document.getElementById('wind-gusts').value;
+
+    if (windSpeed > 0) {
+        const windSummary = `Winds from the ${windDirection} around ${windSpeed} mph`;
+        if (windGusts > 0) {
+            windSummary += ` with gusts up to ${windGusts} mph`;
+        }
+        forecastParts.push(windSummary);
+    }
+
+    // Combine forecast parts
+    const forecastOutput = forecastParts.join('. ') + '.';
+    document.getElementById('forecast-output').innerText = forecastOutput;
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
