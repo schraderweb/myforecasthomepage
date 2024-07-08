@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast Generator</title>
     <style>
-        /* Basic styling for layout */
         .container { max-width: 600px; margin: auto; padding: 20px; }
         .section { margin: 20px 0; }
         .section label { display: block; margin-bottom: 10px; }
-        .section select, .section input { width: 100%; margin-bottom: 10px; }
+        .section select, .section input, .section checkbox { width: 100%; margin-bottom: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Weather Forecast Generator</h1>
 
+        <!-- Cloud Conditions -->
         <div class="section">
             <label for="clouds-morning">Morning Clouds:</label>
             <select id="clouds-morning">
@@ -60,6 +60,7 @@
             </select>
         </div>
 
+        <!-- Precipitation Conditions -->
         <div class="section">
             <label for="precipitation-morning">Morning Precipitation:</label>
             <select id="precipitation-morning">
@@ -73,6 +74,9 @@
                 <option value="Heavy Snow">Heavy Snow</option>
                 <option value="Blizzard">Blizzard</option>
             </select>
+            <label>
+                <input type="checkbox" id="possible-morning"> Possible
+            </label>
         </div>
 
         <div class="section">
@@ -88,6 +92,9 @@
                 <option value="Heavy Snow">Heavy Snow</option>
                 <option value="Blizzard">Blizzard</option>
             </select>
+            <label>
+                <input type="checkbox" id="possible-afternoon"> Possible
+            </label>
         </div>
 
         <div class="section">
@@ -103,6 +110,9 @@
                 <option value="Heavy Snow">Heavy Snow</option>
                 <option value="Blizzard">Blizzard</option>
             </select>
+            <label>
+                <input type="checkbox" id="possible-evening"> Possible
+            </label>
         </div>
 
         <div class="section">
@@ -118,8 +128,12 @@
                 <option value="Heavy Snow">Heavy Snow</option>
                 <option value="Blizzard">Blizzard</option>
             </select>
+            <label>
+                <input type="checkbox" id="possible-night"> Possible
+            </label>
         </div>
 
+        <!-- Wind Conditions -->
         <div class="section">
             <label for="wind-speed">Wind Speed (mph):</label>
             <input type="number" id="wind-speed" min="0" placeholder="mph">
