@@ -3,90 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Forecast Maker</title>
+    <title>Weather Forecast Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .forecast-container { margin: 20px; }
+        .section { margin-bottom: 15px; }
+    </style>
 </head>
 <body>
-    <h1>Weather Forecast Maker</h1>
+    <div class="forecast-container">
+        <h1>Weather Forecast Generator</h1>
 
-    <!-- Cloud Conditions -->
-    <div id="clouds">
-        <h2>Cloud Conditions</h2>
-        <select id="cloudsMorning">
-            <option value="">Morning</option>
-            <option value="sunny">Sunny</option>
-            <option value="partlySunny">Partly Sunny</option>
-            <option value="partlyCloudy">Partly Cloudy</option>
-            <option value="cloudy">Cloudy</option>
-        </select>
-        <select id="cloudsAfternoon">
-            <option value="">Afternoon</option>
-            <option value="sunny">Sunny</option>
-            <option value="partlySunny">Partly Sunny</option>
-            <option value="partlyCloudy">Partly Cloudy</option>
-            <option value="cloudy">Cloudy</option>
-        </select>
-        <select id="cloudsEvening">
-            <option value="">Evening</option>
-            <option value="sunny">Sunny</option>
-            <option value="partlySunny">Partly Sunny</option>
-            <option value="partlyCloudy">Partly Cloudy</option>
-            <option value="cloudy">Cloudy</option>
-        </select>
-        <select id="cloudsNight">
-            <option value="">Night</option>
-            <option value="sunny">Sunny</option>
-            <option value="partlySunny">Partly Sunny</option>
-            <option value="partlyCloudy">Partly Cloudy</option>
-            <option value="cloudy">Cloudy</option>
-        </select>
+        <div class="section">
+            <h2>Clouds</h2>
+            <label for="clouds">Select cloud coverage:</label>
+            <select id="clouds">
+                <option value="none">None</option>
+                <option value="partly-cloudy">Partly Cloudy</option>
+                <option value="mostly-cloudy">Mostly Cloudy</option>
+                <option value="cloudy">Cloudy</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>Sunshine</h2>
+            <label for="sunshine">Select sunshine:</label>
+            <select id="sunshine">
+                <option value="none">None</option>
+                <option value="partly-sunny">Partly Sunny</option>
+                <option value="mostly-sunny">Mostly Sunny</option>
+                <option value="sunny">Sunny</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>Rain</h2>
+            <label for="rain">Select rain:</label>
+            <select id="rain">
+                <option value="none">None</option>
+                <option value="light-rain">Light Rain</option>
+                <option value="moderate-rain">Moderate Rain</option>
+                <option value="heavy-rain">Heavy Rain</option>
+                <option value="possible">Possible</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>Time Periods</h2>
+            <label for="time-period">Select time period:</label>
+            <select id="time-period">
+                <option value="early-morning">Early Morning</option>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+                <option value="late-night">Late Night</option>
+                <option value="all-day">All Day</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>Wind</h2>
+            <label for="wind-speed">Wind speed (mph):</label>
+            <input type="number" id="wind-speed" min="0" max="100" step="1" value="0">
+            <label for="wind-direction">Direction:</label>
+            <select id="wind-direction">
+                <option value="none">None</option>
+                <option value="north">North</option>
+                <option value="south">South</option>
+                <option value="east">East</option>
+                <option value="west">West</option>
+            </select>
+            <label><input type="checkbox" id="wind-gusts"> Gusts</label>
+        </div>
+
+        <div class="section">
+            <h2>Special Conditions</h2>
+            <label><input type="checkbox" id="thunderstorms"> Thunderstorms</label>
+            <label><input type="checkbox" id="blizzard"> Blizzard</label>
+            <label><input type="checkbox" id="heavy-snow"> Heavy Snow</label>
+            <label><input type="checkbox" id="snow"> Snow</label>
+            <label><input type="checkbox" id="light-snow"> Light Snow</label>
+        </div>
+
+        <button onclick="generateForecast()">Generate Forecast</button>
+
+        <div id="forecast-output" class="section"></div>
     </div>
 
-    <!-- Rain Conditions -->
-    <div id="rain">
-        <h2>Rain Conditions</h2>
-        <select id="rainMorning">
-            <option value="">Morning</option>
-            <option value="none">No Rain</option>
-            <option value="sprinkles">Sprinkles</option>
-            <option value="lightRain">Light Rain</option>
-            <option value="heavyRain">Heavy Rain</option>
-        </select>
-        <select id="rainAfternoon">
-            <option value="">Afternoon</option>
-            <option value="none">No Rain</option>
-            <option value="sprinkles">Sprinkles</option>
-            <option value="lightRain">Light Rain</option>
-            <option value="heavyRain">Heavy Rain</option>
-        </select>
-        <select id="rainEvening">
-            <option value="">Evening</option>
-            <option value="none">No Rain</option>
-            <option value="sprinkles">Sprinkles</option>
-            <option value="lightRain">Light Rain</option>
-            <option value="heavyRain">Heavy Rain</option>
-        </select>
-        <select id="rainNight">
-            <option value="">Night</option>
-            <option value="none">No Rain</option>
-            <option value="sprinkles">Sprinkles</option>
-            <option value="lightRain">Light Rain</option>
-            <option value="heavyRain">Heavy Rain</option>
-        </select>
-    </div>
-
-    <!-- Wind Conditions -->
-    <div id="wind">
-        <h2>Wind Conditions</h2>
-        <label for="windSpeed">Wind Speed:</label>
-        <input type="number" id="windSpeed" placeholder="mph">
-        <select id="windDirection">
-            <option value="">Direction</option>
-            <option value="north">North</option>
-            <option value="south">South</option>
-            <option value="east">East</option>
-            <option value="west">West</option>
-        </select>
-    </div>
+    <script src="forecast.js"></script>
+</body>
+</html>
 
     <!-- Generate Forecast -->
     <button onclick="generateForecast()">Generate Forecast</button>
@@ -101,51 +107,65 @@
 
 <script>
 function generateForecast() {
-    // Collect values from the dropdowns
-    let cloudsMorning = document.getElementById('cloudsMorning').value;
-    let cloudsAfternoon = document.getElementById('cloudsAfternoon').value;
-    let cloudsEvening = document.getElementById('cloudsEvening').value;
-    let cloudsNight = document.getElementById('cloudsNight').value;
+    // Get values from HTML
+    const clouds = document.getElementById('clouds').value;
+    const sunshine = document.getElementById('sunshine').value;
+    const rain = document.getElementById('rain').value;
+    const timePeriod = document.getElementById('time-period').value;
+    const windSpeed = parseInt(document.getElementById('wind-speed').value);
+    const windDirection = document.getElementById('wind-direction').value;
+    const windGusts = document.getElementById('wind-gusts').checked;
 
-    let rainMorning = document.getElementById('rainMorning').value;
-    let rainAfternoon = document.getElementById('rainAfternoon').value;
-    let rainEvening = document.getElementById('rainEvening').value;
-    let rainNight = document.getElementById('rainNight').value;
+    const thunderstorms = document.getElementById('thunderstorms').checked;
+    const blizzard = document.getElementById('blizzard').checked;
+    const heavySnow = document.getElementById('heavy-snow').checked;
+    const snow = document.getElementById('snow').checked;
+    const lightSnow = document.getElementById('light-snow').checked;
 
-    let windSpeed = document.getElementById('windSpeed').value;
-    let windDirection = document.getElementById('windDirection').value;
+    let forecast = [];
 
-    // Combine values to generate a forecast
-    let forecast = "";
+    // Cloud coverage
+    if (clouds !== 'none') {
+        forecast.push(`${clouds.replace('-', ' ')} skies`);
+    }
 
-    // Determine cloudiness
-    if (cloudsMorning && cloudsMorning === cloudsAfternoon && cloudsAfternoon === cloudsEvening && cloudsEvening === cloudsNight) {
-        forecast += `${cloudsMorning.charAt(0).toUpperCase() + cloudsMorning.slice(1)} all day. `;
+    // Sunshine
+    if (sunshine !== 'none') {
+        forecast.push(sunshine.replace('-', ' '));
+    }
+
+    // Rain
+    if (rain !== 'none') {
+        forecast.push(rain === 'possible' ? 'possible rain' : rain.replace('-', ' '));
+    }
+
+    // Special conditions
+    if (thunderstorms) forecast.push('possible thunderstorms');
+    if (blizzard) forecast.push('blizzard conditions');
+    if (heavySnow) forecast.push('heavy snow');
+    if (snow) forecast.push('snow');
+    if (lightSnow) forecast.push('light snow');
+
+    // Time period
+    if (timePeriod !== 'all-day') {
+        forecast.push(`in the ${timePeriod.replace('-', ' ')}`);
     } else {
-        if (cloudsMorning) forecast += `${cloudsMorning.charAt(0).toUpperCase() + cloudsMorning.slice(1)} in the morning. `;
-        if (cloudsAfternoon) forecast += `${cloudsAfternoon.charAt(0).toUpperCase() + cloudsAfternoon.slice(1)} in the afternoon. `;
-        if (cloudsEvening) forecast += `${cloudsEvening.charAt(0).toUpperCase() + cloudsEvening.slice(1)} in the evening. `;
-        if (cloudsNight) forecast += `${cloudsNight.charAt(0).toUpperCase() + cloudsNight.slice(1)} at night. `;
+        forecast.push('all day');
     }
 
-    // Determine rain
-    if (rainMorning && rainMorning === rainAfternoon && rainAfternoon === rainEvening && rainEvening === rainNight) {
-        forecast += `${rainMorning.charAt(0).toUpperCase() + rainMorning.slice(1)} all day. `;
-    } else {
-        if (rainMorning && rainMorning !== "none") forecast += `${rainMorning.charAt(0).toUpperCase() + rainMorning.slice(1)} in the morning. `;
-        if (rainAfternoon && rainAfternoon !== "none") forecast += `${rainAfternoon.charAt(0).toUpperCase() + rainAfternoon.slice(1)} in the afternoon. `;
-        if (rainEvening && rainEvening !== "none") forecast += `${rainEvening.charAt(0).toUpperCase() + rainEvening.slice(1)} in the evening. `;
-        if (rainNight && rainNight !== "none") forecast += `${rainNight.charAt(0).toUpperCase() + rainNight.slice(1)} at night. `;
+    // Wind
+    if (windSpeed > 0 || windGusts) {
+        let windDesc = windSpeed === 0 ? 'calm winds' : `winds around ${windSpeed} mph`;
+        if (windDirection !== 'none') {
+            windDesc += ` from the ${windDirection}`;
+        }
+        if (windGusts) {
+            windDesc += ' with gusts';
+        }
+        forecast.push(windDesc);
     }
 
-    // Determine wind
-    if (windSpeed && windDirection) {
-        forecast += `${windDirection.charAt(0).toUpperCase() + windDirection.slice(1)} winds around ${windSpeed} mph.`;
-    }
-
-    // Output the forecast
-    document.getElementById('forecastOutput').innerText = forecast.trim();
+    // Combine forecast
+    document.getElementById('forecast-output').innerText = forecast.join(' ');
 }
-
-    </script>
 
