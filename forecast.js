@@ -1,49 +1,36 @@
 function generateForecast() {
-    const clouds = document.getElementById("clouds").value;
-    const cloudsTime = document.getElementById("cloudsTime").value;
-    const precipitation = document.getElementById("precipitation").value;
-    const precipitationTime = document.getElementById("precipitationTime").value;
-    const precipitationType = document.getElementById("precipitationType").value;
-    const windDirection = document.getElementById("windDirection").value;
-    const windSpeed = document.getElementById("windSpeed").value;
-    const windGusts = document.getElementById("windGusts").value;
+    const morningClouds = document.getElementById('clouds-morning').value;
+    const afternoonClouds = document.getElementById('clouds-afternoon').value;
+    const morningPrecipitation = document.getElementById('precipitation-morning').value;
+    const windSpeed = document.getElementById('wind-speed').value;
+    const windDirection = document.getElementById('wind-direction').value;
 
-    let forecast = "";
+    let forecast = '';
 
-    // Construct the cloud forecast
-    if (clouds) {
-        if (cloudsTime) {
-            forecast += `${clouds} in the ${cloudsTime}`;
-        } else {
-            forecast += `${clouds} all day`;
+    // Determine cloud coverage summary
+    if (morningClouds === afternoonClouds) {
+        forecast += `${morningClouds} all day. `;
+    } else {
+        if (morningClouds !== 'Clear') {
+            forecast += `${morningClouds} in the morning, `;
+        }
+        if (afternoonClouds !== 'Clear') {
+            forecast += `then ${afternoonClouds} in the afternoon. `;
         }
     }
 
-    // Construct the precipitation forecast
-    if (precipitation && precipitation !== "None") {
-        if (forecast) forecast += " with ";
-        if (precipitationType === "possible") {
-            forecast += `possible ${precipitation.toLowerCase()}`;
-        } else {
-            forecast += `${precipitation.toLowerCase()}`;
-        }
-        if (precipitationTime) {
-            forecast += ` in the ${precipitationTime}`;
-        } else {
-            forecast += ` throughout the day`;
-        }
+    // Determine precipitation summary
+    if (morningPrecipitation !== 'None') {
+        forecast += `Expect ${morningPrecipitation.toLowerCase()} in the morning. `;
     }
 
-    // Construct the wind forecast
-    if (windDirection || windSpeed) {
-        if (forecast) forecast += ", ";
-        forecast += windSpeed > 0 ? `${windDirection} winds around ${windSpeed} mph` : "calm winds";
-        if (windGusts === "gusts") {
-            forecast += " with gusts";
-        }
+    // Add wind information
+    if (windSpeed > 0) {
+        forecast += `Winds from the ${windDirection} around ${windSpeed} mph.`;
+    } else {
+        forecast += 'Calm winds.';
     }
 
-    // Capitalize the first letter and finalize the forecast
-    forecast = forecast.charAt(0).toUpperCase() + forecast.slice(1) + ".";
-    document.getElementById("forecastOutput").innerText = forecast;
+    // Display the generated forecast
+    document.getElementById('forecast-output').innerText = forecast.trim();
 }
