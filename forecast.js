@@ -1,40 +1,44 @@
 function generateForecast() {
-    const morningClouds = document.getElementById('morningClouds').value;
-    const afternoonClouds = document.getElementById('afternoonClouds').value;
-    const eveningClouds = document.getElementById('eveningClouds').value;
-    const nightClouds = document.getElementById('nightClouds').value;
+    const morningClouds = document.getElementById("morning-clouds").value;
+    const afternoonClouds = document.getElementById("afternoon-clouds").value;
+    const eveningClouds = document.getElementById("evening-clouds").value;
+    const nightClouds = document.getElementById("night-clouds").value;
 
-    const morningPrecip = document.getElementById('morningPrecip').value;
-    const afternoonPrecip = document.getElementById('afternoonPrecip').value;
-    const eveningPrecip = document.getElementById('eveningPrecip').value;
-    const nightPrecip = document.getElementById('nightPrecip').value;
+    const morningPrecip = document.getElementById("morning-precip").value;
+    const afternoonPrecip = document.getElementById("afternoon-precip").value;
+    const eveningPrecip = document.getElementById("evening-precip").value;
+    const nightPrecip = document.getElementById("night-precip").value;
+    const precipPossible = document.getElementById("precip-possible").checked;
 
-    const windSpeed = document.getElementById('windSpeed').value;
-    const windDirection = document.getElementById('windDirection').value;
-    const windGusts = document.getElementById('windGusts').value;
+    const windSpeed = document.getElementById("wind-speed").value;
+    const windDirection = document.getElementById("wind-direction").value;
+    const windGusts = document.getElementById("wind-gusts").checked;
 
-    let forecast = '';
+    let forecast = "";
 
-    if (morningClouds === afternoonClouds && afternoonClouds === eveningClouds && eveningClouds === nightClouds) {
-        forecast += `${morningClouds} all day. `;
-    } else {
-        if (morningClouds) forecast += `${morningClouds} in the morning. `;
-        if (afternoonClouds) forecast += `${afternoonClouds} in the afternoon. `;
-        if (eveningClouds) forecast += `${eveningClouds} in the evening. `;
-        if (nightClouds) forecast += `${nightClouds} at night. `;
+    if (morningClouds || afternoonClouds || eveningClouds || nightClouds) {
+        forecast += "Cloudiness: ";
+        if (morningClouds) forecast += `Morning: ${morningClouds}. `;
+        if (afternoonClouds) forecast += `Afternoon: ${afternoonClouds}. `;
+        if (eveningClouds) forecast += `Evening: ${eveningClouds}. `;
+        if (nightClouds) forecast += `Night: ${nightClouds}. `;
     }
 
-    if (morningPrecip !== 'None') forecast += `${morningPrecip} in the morning. `;
-    if (afternoonPrecip !== 'None') forecast += `${afternoonPrecip} in the afternoon. `;
-    if (eveningPrecip !== 'None') forecast += `${eveningPrecip} in the evening. `;
-    if (nightPrecip !== 'None') forecast += `${nightPrecip} at night. `;
-
-    if (windSpeed > 0) {
-        forecast += `${windDirection} winds around ${windSpeed} mph. `;
-        if (windGusts > 0) forecast += `Gusts up to ${windGusts} mph. `;
-    } else {
-        forecast += 'Calm winds. ';
+    if (morningPrecip || afternoonPrecip || eveningPrecip || nightPrecip) {
+        forecast += "Precipitation: ";
+        if (precipPossible) forecast += "Possible ";
+        if (morningPrecip) forecast += `Morning: ${morningPrecip}. `;
+        if (afternoonPrecip) forecast += `Afternoon: ${afternoonPrecip}. `;
+        if (eveningPrecip) forecast += `Evening: ${eveningPrecip}. `;
+        if (nightPrecip) forecast += `Night: ${nightPrecip}. `;
     }
 
-    document.getElementById('forecast').innerText = forecast;
+    if (windSpeed || windDirection || windGusts) {
+        forecast += "Winds: ";
+        if (windSpeed) forecast += `${windSpeed} mph `;
+        if (windDirection) forecast += `from the ${windDirection} `;
+        if (windGusts) forecast += "with gusts ";
+    }
+
+    document.getElementById("forecast-output").innerText = forecast;
 }
