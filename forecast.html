@@ -3,196 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forecast Maker</title>
-    <style>
-        .time-period { margin-bottom: 20px; }
-    </style>
+    <title>Weather Forecast Maker</title>
 </head>
 <body>
-    <h1>Forecast Maker</h1>
-    <form id="forecast-form">
-        <!-- Time Periods -->
-        <div class="time-period">
-            <h2>Early Morning (1-6 AM)</h2>
-            <select name="clouds-early-morning" onchange="updateForecast()">
-                <option value="">Select Clouds</option>
-                <option value="clear">Clear</option>
-                <option value="partly-cloudy">Partly Cloudy</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="sunshine-early-morning" onchange="updateForecast()">
-                <option value="">Select Sunshine</option>
-                <option value="sunny">Sunny</option>
-                <option value="partly-sunny">Partly Sunny</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="rain-early-morning" onchange="updateForecast()">
-                <option value="">Select Rain</option>
-                <option value="no-rain">No Rain</option>
-                <option value="light-rain">Light Rain</option>
-                <option value="heavy-rain">Heavy Rain</option>
-            </select>
-        </div>
-        <!-- Repeat for other periods -->
-        <div class="time-period">
-            <h2>Morning (6-11 AM)</h2>
-            <select name="clouds-morning" onchange="updateForecast()">
-                <option value="">Select Clouds</option>
-                <option value="clear">Clear</option>
-                <option value="partly-cloudy">Partly Cloudy</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="sunshine-morning" onchange="updateForecast()">
-                <option value="">Select Sunshine</option>
-                <option value="sunny">Sunny</option>
-                <option value="partly-sunny">Partly Sunny</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="rain-morning" onchange="updateForecast()">
-                <option value="">Select Rain</option>
-                <option value="no-rain">No Rain</option>
-                <option value="light-rain">Light Rain</option>
-                <option value="heavy-rain">Heavy Rain</option>
-            </select>
-        </div>
-        <div class="time-period">
-            <h2>Afternoon (11 AM - 5 PM)</h2>
-            <select name="clouds-afternoon" onchange="updateForecast()">
-                <option value="">Select Clouds</option>
-                <option value="clear">Clear</option>
-                <option value="partly-cloudy">Partly Cloudy</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="sunshine-afternoon" onchange="updateForecast()">
-                <option value="">Select Sunshine</option>
-                <option value="sunny">Sunny</option>
-                <option value="partly-sunny">Partly Sunny</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="rain-afternoon" onchange="updateForecast()">
-                <option value="">Select Rain</option>
-                <option value="no-rain">No Rain</option>
-                <option value="light-rain">Light Rain</option>
-                <option value="heavy-rain">Heavy Rain</option>
-            </select>
-        </div>
-        <div class="time-period">
-            <h2>Evening (5-11 PM)</h2>
-            <select name="clouds-evening" onchange="updateForecast()">
-                <option value="">Select Clouds</option>
-                <option value="clear">Clear</option>
-                <option value="partly-cloudy">Partly Cloudy</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="sunshine-evening" onchange="updateForecast()">
-                <option value="">Select Sunshine</option>
-                <option value="sunny">Sunny</option>
-                <option value="partly-sunny">Partly Sunny</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="rain-evening" onchange="updateForecast()">
-                <option value="">Select Rain</option>
-                <option value="no-rain">No Rain</option>
-                <option value="light-rain">Light Rain</option>
-                <option value="heavy-rain">Heavy Rain</option>
-            </select>
-        </div>
-        <div class="time-period">
-            <h2>Late Night (11 PM - 1 AM)</h2>
-            <select name="clouds-late-night" onchange="updateForecast()">
-                <option value="">Select Clouds</option>
-                <option value="clear">Clear</option>
-                <option value="partly-cloudy">Partly Cloudy</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="sunshine-late-night" onchange="updateForecast()">
-                <option value="">Select Sunshine</option>
-                <option value="sunny">Sunny</option>
-                <option value="partly-sunny">Partly Sunny</option>
-                <option value="cloudy">Cloudy</option>
-            </select>
-            <select name="rain-late-night" onchange="updateForecast()">
-                <option value="">Select Rain</option>
-                <option value="no-rain">No Rain</option>
-                <option value="light-rain">Light Rain</option>
-                <option value="heavy-rain">Heavy Rain</option>
-            </select>
-        </div>
+    <h1>Weather Forecast Maker</h1>
 
-        <!-- Wind Section -->
-        <div>
-            <h2>Wind</h2>
-            <input type="number" name="wind-speed" placeholder="Speed (mph)" oninput="updateForecast()">
-            <input type="text" name="wind-direction" placeholder="Direction" oninput="updateForecast()">
-        </div>
-        
-        <!-- All-Day Checkbox -->
-        <div>
-            <h2>All Day Conditions</h2>
-            <input type="checkbox" name="all-day-sunny" onchange="updateForecast()"> Sunny All Day
-            <input type="checkbox" name="all-day-rain" onchange="updateForecast()"> Rain All Day
-        </div>
+    <!-- Cloud Conditions -->
+    <div id="clouds">
+        <h2>Cloud Conditions</h2>
+        <select id="cloudsMorning">
+            <option value="">Morning</option>
+            <option value="sunny">Sunny</option>
+            <option value="partlySunny">Partly Sunny</option>
+            <option value="partlyCloudy">Partly Cloudy</option>
+            <option value="cloudy">Cloudy</option>
+        </select>
+        <select id="cloudsAfternoon">
+            <option value="">Afternoon</option>
+            <option value="sunny">Sunny</option>
+            <option value="partlySunny">Partly Sunny</option>
+            <option value="partlyCloudy">Partly Cloudy</option>
+            <option value="cloudy">Cloudy</option>
+        </select>
+        <select id="cloudsEvening">
+            <option value="">Evening</option>
+            <option value="sunny">Sunny</option>
+            <option value="partlySunny">Partly Sunny</option>
+            <option value="partlyCloudy">Partly Cloudy</option>
+            <option value="cloudy">Cloudy</option>
+        </select>
+        <select id="cloudsNight">
+            <option value="">Night</option>
+            <option value="sunny">Sunny</option>
+            <option value="partlySunny">Partly Sunny</option>
+            <option value="partlyCloudy">Partly Cloudy</option>
+            <option value="cloudy">Cloudy</option>
+        </select>
+    </div>
 
-        <button type="button" onclick="generateForecast()">Generate Forecast</button>
-    </form>
+    <!-- Rain Conditions -->
+    <div id="rain">
+        <h2>Rain Conditions</h2>
+        <select id="rainMorning">
+            <option value="">Morning</option>
+            <option value="none">No Rain</option>
+            <option value="sprinkles">Sprinkles</option>
+            <option value="lightRain">Light Rain</option>
+            <option value="heavyRain">Heavy Rain</option>
+        </select>
+        <select id="rainAfternoon">
+            <option value="">Afternoon</option>
+            <option value="none">No Rain</option>
+            <option value="sprinkles">Sprinkles</option>
+            <option value="lightRain">Light Rain</option>
+            <option value="heavyRain">Heavy Rain</option>
+        </select>
+        <select id="rainEvening">
+            <option value="">Evening</option>
+            <option value="none">No Rain</option>
+            <option value="sprinkles">Sprinkles</option>
+            <option value="lightRain">Light Rain</option>
+            <option value="heavyRain">Heavy Rain</option>
+        </select>
+        <select id="rainNight">
+            <option value="">Night</option>
+            <option value="none">No Rain</option>
+            <option value="sprinkles">Sprinkles</option>
+            <option value="lightRain">Light Rain</option>
+            <option value="heavyRain">Heavy Rain</option>
+        </select>
+    </div>
 
-    <h2>Forecast Summary</h2>
-    <p id="forecast-summary"></p>
+    <!-- Wind Conditions -->
+    <div id="wind">
+        <h2>Wind Conditions</h2>
+        <label for="windSpeed">Wind Speed:</label>
+        <input type="number" id="windSpeed" placeholder="mph">
+        <select id="windDirection">
+            <option value="">Direction</option>
+            <option value="north">North</option>
+            <option value="south">South</option>
+            <option value="east">East</option>
+            <option value="west">West</option>
+        </select>
+    </div>
+
+    <!-- Generate Forecast -->
+    <button onclick="generateForecast()">Generate Forecast</button>
+
+    <!-- Forecast Output -->
+    <h2>Generated Forecast</h2>
+    <p id="forecastOutput"></p>
 
     <script src="forecast.js"></script>
 </body>
 </html>
 
-
 <script>
-function updateForecast() {
-    const form = document.getElementById('forecast-form');
-    const summaryElement = document.getElementById('forecast-summary');
-    let summary = "";
-    const periods = ['early-morning', 'morning', 'afternoon', 'evening', 'late-night'];
-    
-    // Check for "all day" conditions first
-    if (form['all-day-sunny'].checked) {
-        summary += "Sunny all day. ";
-    } else if (form['all-day-rain'].checked) {
-        summary += "Rain all day. ";
-    } else {
-        // Gather period-specific conditions
-        periods.forEach(period => {
-            const clouds = form[`clouds-${period}`].value;
-            const sunshine = form[`sunshine-${period}`].value;
-            const rain = form[`rain-${period}`].value;
-
-            if (clouds) {
-                summary += `${capitalize(period.replace('-', ' '))}: ${capitalize(clouds)}. `;
-            }
-            if (sunshine) {
-                summary += `${capitalize(sunshine)} in the ${period.replace('-', ' ')}. `;
-            }
-            if (rain) {
-                summary += `Rain: ${capitalize(rain)} in the ${period.replace('-', ' ')}. `;
-            }
-        });
-    }
-
-    // Add wind conditions
-    const windSpeed = form['wind-speed'].value;
-    const windDirection = form['wind-direction'].value;
-    if (windSpeed && windDirection) {
-        summary += `Winds at ${windSpeed} mph ${windDirection}. `;
-    }
-
-    // Update summary
-    summaryElement.textContent = summary || "Please select conditions.";
-}
-
-function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 function generateForecast() {
-    updateForecast();
+    // Collect values from the dropdowns
+    let cloudsMorning = document.getElementById('cloudsMorning').value;
+    let cloudsAfternoon = document.getElementById('cloudsAfternoon').value;
+    let cloudsEvening = document.getElementById('cloudsEvening').value;
+    let cloudsNight = document.getElementById('cloudsNight').value;
+
+    let rainMorning = document.getElementById('rainMorning').value;
+    let rainAfternoon = document.getElementById('rainAfternoon').value;
+    let rainEvening = document.getElementById('rainEvening').value;
+    let rainNight = document.getElementById('rainNight').value;
+
+    let windSpeed = document.getElementById('windSpeed').value;
+    let windDirection = document.getElementById('windDirection').value;
+
+    // Combine values to generate a forecast
+    let forecast = "";
+
+    // Determine cloudiness
+    if (cloudsMorning && cloudsMorning === cloudsAfternoon && cloudsAfternoon === cloudsEvening && cloudsEvening === cloudsNight) {
+        forecast += `${cloudsMorning.charAt(0).toUpperCase() + cloudsMorning.slice(1)} all day. `;
+    } else {
+        if (cloudsMorning) forecast += `${cloudsMorning.charAt(0).toUpperCase() + cloudsMorning.slice(1)} in the morning. `;
+        if (cloudsAfternoon) forecast += `${cloudsAfternoon.charAt(0).toUpperCase() + cloudsAfternoon.slice(1)} in the afternoon. `;
+        if (cloudsEvening) forecast += `${cloudsEvening.charAt(0).toUpperCase() + cloudsEvening.slice(1)} in the evening. `;
+        if (cloudsNight) forecast += `${cloudsNight.charAt(0).toUpperCase() + cloudsNight.slice(1)} at night. `;
+    }
+
+    // Determine rain
+    if (rainMorning && rainMorning === rainAfternoon && rainAfternoon === rainEvening && rainEvening === rainNight) {
+        forecast += `${rainMorning.charAt(0).toUpperCase() + rainMorning.slice(1)} all day. `;
+    } else {
+        if (rainMorning && rainMorning !== "none") forecast += `${rainMorning.charAt(0).toUpperCase() + rainMorning.slice(1)} in the morning. `;
+        if (rainAfternoon && rainAfternoon !== "none") forecast += `${rainAfternoon.charAt(0).toUpperCase() + rainAfternoon.slice(1)} in the afternoon. `;
+        if (rainEvening && rainEvening !== "none") forecast += `${rainEvening.charAt(0).toUpperCase() + rainEvening.slice(1)} in the evening. `;
+        if (rainNight && rainNight !== "none") forecast += `${rainNight.charAt(0).toUpperCase() + rainNight.slice(1)} at night. `;
+    }
+
+    // Determine wind
+    if (windSpeed && windDirection) {
+        forecast += `${windDirection.charAt(0).toUpperCase() + windDirection.slice(1)} winds around ${windSpeed} mph.`;
+    }
+
+    // Output the forecast
+    document.getElementById('forecastOutput').innerText = forecast.trim();
 }
 
+    </script>
 
-</script>
