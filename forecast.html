@@ -5,96 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast Generator</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .section {
-            margin-bottom: 15px;
-        }
-        .section label {
-            font-weight: bold;
-        }
+        /* Basic styling for layout */
+        .container { max-width: 600px; margin: auto; }
+        .section { margin: 20px 0; }
+        .section label { display: block; margin-bottom: 10px; }
+        .section select, .section input { width: 100%; margin-bottom: 10px; }
     </style>
 </head>
 <body>
-    <h1>Weather Forecast Generator</h1>
-    <form id="forecastForm">
+    <div class="container">
+        <h1>Weather Forecast Generator</h1>
+        
         <div class="section">
-            <label for="clouds">Clouds:</label>
-            <select id="clouds">
-                <option value="">Select</option>
-                <option value="Clear/Sunny">Clear/Sunny</option>
+            <label for="clouds-morning">Morning Clouds:</label>
+            <select id="clouds-morning">
+                <option value="Clear">Clear/Sunny</option>
                 <option value="Mostly Sunny">Mostly Sunny</option>
-                <option value="Partly Cloudy/Partly Sunny">Partly Cloudy/Partly Sunny</option>
+                <option value="Partly Cloudy">Partly Cloudy/Partly Sunny</option>
                 <option value="Mostly Cloudy">Mostly Cloudy</option>
                 <option value="Cloudy">Cloudy</option>
             </select>
         </div>
+
         <div class="section">
-            <label for="cloudsTime">Clouds Time:</label>
-            <select id="cloudsTime">
-                <option value="">Select</option>
-                <option value="morning">Morning</option>
-                <option value="afternoon">Afternoon</option>
-                <option value="evening">Evening</option>
-                <option value="night">Night</option>
+            <label for="clouds-afternoon">Afternoon Clouds:</label>
+            <select id="clouds-afternoon">
+                <option value="Clear">Clear/Sunny</option>
+                <option value="Mostly Sunny">Mostly Sunny</option>
+                <option value="Partly Cloudy">Partly Cloudy/Partly Sunny</option>
+                <option value="Mostly Cloudy">Mostly Cloudy</option>
+                <option value="Cloudy">Cloudy</option>
             </select>
         </div>
+        
         <div class="section">
-            <label for="precipitation">Precipitation:</label>
-            <select id="precipitation">
-                <option value="">Select</option>
+            <label for="precipitation-morning">Morning Precipitation:</label>
+            <select id="precipitation-morning">
                 <option value="None">None</option>
+                <option value="Sprinkles">Sprinkles</option>
                 <option value="Rain">Rain</option>
-                <option value="Thunderstorms">Thunderstorms</option>
+                <option value="Heavy Rain">Heavy Rain</option>
+                <option value="T-storms">Thunderstorms</option>
+                <option value="Light Snow">Light Snow</option>
                 <option value="Snow">Snow</option>
+                <option value="Heavy Snow">Heavy Snow</option>
                 <option value="Blizzard">Blizzard</option>
             </select>
         </div>
+
         <div class="section">
-            <label for="precipitationTime">Precipitation Time:</label>
-            <select id="precipitationTime">
-                <option value="">Select</option>
-                <option value="morning">Morning</option>
-                <option value="afternoon">Afternoon</option>
-                <option value="evening">Evening</option>
-                <option value="night">Night</option>
+            <label for="wind-speed">Wind Speed:</label>
+            <input type="number" id="wind-speed" placeholder="mph">
+        </div>
+
+        <div class="section">
+            <label for="wind-direction">Wind Direction:</label>
+            <select id="wind-direction">
+                <option value="N">North</option>
+                <option value="S">South</option>
+                <option value="E">East</option>
+                <option value="W">West</option>
+                <option value="NE">Northeast</option>
+                <option value="NW">Northwest</option>
+                <option value="SE">Southeast</option>
+                <option value="SW">Southwest</option>
             </select>
         </div>
+        
+        <button onclick="generateForecast()">Generate Forecast</button>
+
         <div class="section">
-            <label for="precipitationType">Precipitation Type:</label>
-            <select id="precipitationType">
-                <option value="">Select</option>
-                <option value="possible">Possible</option>
-                <option value="none">None</option>
-            </select>
+            <h2>Forecast:</h2>
+            <p id="forecast-output"></p>
         </div>
-        <div class="section">
-            <label for="windDirection">Wind Direction:</label>
-            <select id="windDirection">
-                <option value="">Select</option>
-                <option value="north">North</option>
-                <option value="south">South</option>
-                <option value="east">East</option>
-                <option value="west">West</option>
-            </select>
-        </div>
-        <div class="section">
-            <label for="windSpeed">Wind Speed (mph):</label>
-            <input type="number" id="windSpeed" min="0" max="100">
-        </div>
-        <div class="section">
-            <label for="windGusts">Wind Gusts:</label>
-            <select id="windGusts">
-                <option value="none">None</option>
-                <option value="gusts">Gusts</option>
-            </select>
-        </div>
-        <button type="button" onclick="generateForecast()">Generate Forecast</button>
-    </form>
-    <h2>Generated Forecast:</h2>
-    <p id="forecastOutput"></p>
+    </div>
 
     <script src="forecast.js"></script>
 </body>
