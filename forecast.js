@@ -1,62 +1,49 @@
 function generateForecast() {
-    // Get values from HTML
-    const clouds = document.getElementById('clouds').value;
-    const sunshine = document.getElementById('sunshine').value;
-    const rain = document.getElementById('rain').value;
-    const timePeriod = document.getElementById('time-period').value;
-    const windSpeed = parseInt(document.getElementById('wind-speed').value);
-    const windDirection = document.getElementById('wind-direction').value;
-    const windGusts = document.getElementById('wind-gusts').checked;
+    const clouds = document.getElementById("clouds").value;
+    const cloudsTime = document.getElementById("cloudsTime").value;
+    const precipitation = document.getElementById("precipitation").value;
+    const precipitationTime = document.getElementById("precipitationTime").value;
+    const precipitationType = document.getElementById("precipitationType").value;
+    const windDirection = document.getElementById("windDirection").value;
+    const windSpeed = document.getElementById("windSpeed").value;
+    const windGusts = document.getElementById("windGusts").value;
 
-    const thunderstorms = document.getElementById('thunderstorms').checked;
-    const blizzard = document.getElementById('blizzard').checked;
-    const heavySnow = document.getElementById('heavy-snow').checked;
-    const snow = document.getElementById('snow').checked;
-    const lightSnow = document.getElementById('light-snow').checked;
+    let forecast = "";
 
-    let forecast = [];
-
-    // Cloud coverage
-    if (clouds !== 'none') {
-        forecast.push(`${clouds.replace('-', ' ')} skies`);
-    }
-
-    // Sunshine
-    if (sunshine !== 'none') {
-        forecast.push(sunshine.replace('-', ' '));
-    }
-
-    // Rain
-    if (rain !== 'none') {
-        forecast.push(rain === 'possible' ? 'possible rain' : rain.replace('-', ' '));
-    }
-
-    // Special conditions
-    if (thunderstorms) forecast.push('possible thunderstorms');
-    if (blizzard) forecast.push('blizzard conditions');
-    if (heavySnow) forecast.push('heavy snow');
-    if (snow) forecast.push('snow');
-    if (lightSnow) forecast.push('light snow');
-
-    // Time period
-    if (timePeriod !== 'all-day') {
-        forecast.push(`in the ${timePeriod.replace('-', ' ')}`);
-    } else {
-        forecast.push('all day');
-    }
-
-    // Wind
-    if (windSpeed > 0 || windGusts) {
-        let windDesc = windSpeed === 0 ? 'calm winds' : `winds around ${windSpeed} mph`;
-        if (windDirection !== 'none') {
-            windDesc += ` from the ${windDirection}`;
+    // Construct the cloud forecast
+    if (clouds) {
+        if (cloudsTime) {
+            forecast += `${clouds} in the ${cloudsTime}`;
+        } else {
+            forecast += `${clouds} all day`;
         }
-        if (windGusts) {
-            windDesc += ' with gusts';
-        }
-        forecast.push(windDesc);
     }
 
-    // Combine forecast
-    document.getElementById('forecast-output').innerText = forecast.join(' ');
+    // Construct the precipitation forecast
+    if (precipitation && precipitation !== "None") {
+        if (forecast) forecast += " with ";
+        if (precipitationType === "possible") {
+            forecast += `possible ${precipitation.toLowerCase()}`;
+        } else {
+            forecast += `${precipitation.toLowerCase()}`;
+        }
+        if (precipitationTime) {
+            forecast += ` in the ${precipitationTime}`;
+        } else {
+            forecast += ` throughout the day`;
+        }
+    }
+
+    // Construct the wind forecast
+    if (windDirection || windSpeed) {
+        if (forecast) forecast += ", ";
+        forecast += windSpeed > 0 ? `${windDirection} winds around ${windSpeed} mph` : "calm winds";
+        if (windGusts === "gusts") {
+            forecast += " with gusts";
+        }
+    }
+
+    // Capitalize the first letter and finalize the forecast
+    forecast = forecast.charAt(0).toUpperCase() + forecast.slice(1) + ".";
+    document.getElementById("forecastOutput").innerText = forecast;
 }
