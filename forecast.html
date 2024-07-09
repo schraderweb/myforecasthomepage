@@ -222,11 +222,11 @@ function generateCloudsForecast(clouds) {
     const decreasingCount = times.filter(time => clouds[time + 'Decreasing']).length;
     
     if (increasingCount === times.length) {
-        forecast = spaceOut('Increasing clouds all day.');
+        forecast = spaceOutWords('Increasing clouds all day.');
     } else if (decreasingCount === times.length) {
-        forecast = spaceOut('Decreasing clouds all day.');
+        forecast = spaceOutWords('Decreasing clouds all day.');
     } else if (allSame && !increasingCount && !decreasingCount) {
-        forecast = spaceOut(descriptions[0] + ' all day.');
+        forecast = spaceOutWords(descriptions[0] + ' all day.');
     } else {
         let pattern = '';
         let lastCondition = descriptions[0];
@@ -261,7 +261,7 @@ function generateCloudsForecast(clouds) {
             }
         }
 
-        forecast = spaceOut(pattern.trim());
+        forecast = spaceOutWords(pattern.trim());
     }
 
     return forecast;
@@ -278,8 +278,8 @@ function getCloudDescription(level) {
     }
 }
 
-function spaceOut(str) {
-    return str.split('').join(' ');
+function spaceOutWords(str) {
+    return str.split(' ').join('  ');
 }
 
 
