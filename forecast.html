@@ -216,20 +216,20 @@
         const times = ['morning', 'afternoon', 'evening', 'night'];
         const firstCondition = clouds[times[0]];
 
-        const increasingIndices = times.filter(time => clouds[time + 'Increasing']);
-        const decreasingIndices = times.filter(time => clouds[time + 'Decreasing']);
+        const increasing = times.every(time => clouds[time + 'Increasing']);
+        const decreasing = times.every(time => clouds[time + 'Decreasing']);
 
-        if (increasingIndices.length > 0) {
-            const start = increasingIndices[0];
-            const end = increasingIndices[increasingIndices.length - 1];
-            forecast += getCloudDescription(clouds[times[0]]) + ' in the morning and increasing clouds through the day. ';
-        } else if (decreasingIndices.length > 0) {
-            const start = decreasingIndices[0];
-            const end = decreasingIndices[decreasingIndices.length - 1];
-            forecast += getCloudDescription(clouds[times[0]]) + ' in the morning and decreasing clouds through the day. ';
+        if (increasing) {
+            forecast += 'Increasing clouds throughout the day. ';
+        } else if (decreasing) {
+            forecast += 'Decreasing clouds throughout the day. ';
         } else {
             times.forEach((time, index) => {
-                if (clouds[time] !== firstCondition) {
+                if (clouds[time + 'Increasing']) {
+                    forecast += getCloudDescription(clouds[time]) + ' in the ' + time + ', with increasing clouds. ';
+                } else if (clouds[time + 'Decreasing']) {
+                    forecast += getCloudDescription(clouds[time]) + ' in the ' + time + ', with decreasing clouds. ';
+                } else if (clouds[time] !== clouds[times[index - 1]]) {
                     forecast += getCloudDescription(clouds[time]) + ' in the ' + time + '. ';
                 }
             });
