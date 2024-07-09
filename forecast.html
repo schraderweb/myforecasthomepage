@@ -158,10 +158,10 @@
     function togglePossible(time) {
         const select = document.getElementById(`precipitation-${time}`);
         const selectedOption = select.options[select.selectedIndex];
-        if (!selectedOption.text.startsWith('Possible ')) {
-            selectedOption.text = 'Possible ' + selectedOption.text;
+        if (!selectedOption.value.startsWith('Possible ')) {
+            selectedOption.value = 'Possible ' + selectedOption.value;
         } else {
-            selectedOption.text = selectedOption.text.replace('Possible ', '');
+            selectedOption.value = selectedOption.value.replace('Possible ', '');
         }
     }
 
@@ -260,4 +260,3 @@
 
 </body>
 </html>
-
