@@ -210,12 +210,17 @@
         document.getElementById('forecast').innerText = forecast.trim();
     }
 
-    function generateCloudsForecast(clouds) {
-        let forecast = '';
+function generateCloudsForecast(clouds) {
+    let forecast = '';
 
-        const times = ['morning', 'afternoon', 'evening', 'night'];
-        const firstCondition = clouds[times[0]];
+    const times = ['morning', 'afternoon', 'evening', 'night'];
+    const firstCondition = clouds[times[0]];
 
+    const allSame = times.every(time => clouds[time] === firstCondition);
+
+    if (allSame) {
+        forecast += getCloudDescription(firstCondition) + ' all day. ';
+    } else {
         const increasing = times.every(time => clouds[time + 'Increasing']);
         const decreasing = times.every(time => clouds[time + 'Decreasing']);
 
@@ -229,22 +234,24 @@
                     forecast += getCloudDescription(clouds[time]) + ' in the ' + time + ', with increasing clouds. ';
                 } else if (clouds[time + 'Decreasing']) {
                     forecast += getCloudDescription(clouds[time]) + ' in the ' + time + ', with decreasing clouds. ';
-                } else if (clouds[time] !== clouds[times[index - 1]]) {
+                } else if (index === 0 || clouds[time] !== clouds[times[index - 1]]) {
                     forecast += getCloudDescription(clouds[time]) + ' in the ' + time + '. ';
                 }
             });
         }
-
-        return forecast;
     }
+
+    return forecast;
+}
+
 
     function getCloudDescription(level) {
         switch(level) {
             case 1: return 'Sunny';
             case 2: return 'Partly Sunny';
-            case 3: return 'Partly Cloudy';
-            case 4: return 'Mostly Cloudy';
-            case 5: return 'Cloudy';
+            case 2: return 'Partly Cloudy';
+            case 3: return 'Mostly Cloudy';
+            case 4: return 'Cloudy';
             default: return '';
         }
     }
