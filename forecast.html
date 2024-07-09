@@ -208,8 +208,10 @@
         const times = ['morning', 'afternoon', 'evening', 'night'];
         const firstCondition = clouds[times[0]];
 
-        if (clouds.trend !== 'none') {
-            forecast += capitalizeFirstLetter(clouds.trend) + ' clouds throughout the day, ';
+        if (clouds.trend === 'increasing') {
+            forecast += getCloudDescription(clouds.morning) + ' in the morning with increasing clouds throughout the day, ';
+        } else if (clouds.trend === 'decreasing') {
+            forecast += getCloudDescription(clouds.morning) + ' in the morning with decreasing clouds throughout the day, ';
         } else if (times.every(time => clouds[time] === firstCondition)) {
             forecast += getCloudDescription(firstCondition) + ' all day, ';
         } else {
