@@ -201,35 +201,6 @@
         let lastCondition = clouds[times[0]];
         let increase = false, decrease = false, clear = false;
 
-        for (let i = 1; i < times.length; i++) {
-            const levelDifference = clouds[times[i]] - lastCondition;
-            if (levelDifference > 0) {
-                forecast += `Increasing clouds in the ${times[i]}, `;
-                break;
-            }
-            lastCondition = clouds[times[i]];
-        }
-
-        if (!forecast) {
-            times.forEach((time, index) => {
-                if (index == 0 || clouds[time] !== clouds[times[index - 1]]) {
-                    forecast += `${getCloudDescription(clouds[time])} in the ${time}, `;
-                }
-            });
-        }
-
-        return forecast;
-    }
-
-
-
-   function generateCloudsForecast(clouds) {
-        let forecast = '';
-
-        const times = ['morning', 'afternoon', 'evening', 'night'];
-        let lastCondition = clouds[times[0]];
-        let increase = false, decrease = false, clear = false;
-
         times.forEach((time, index) => {
             if (index > 0) {
                 const levelDifference = clouds[time] - lastCondition;
@@ -255,7 +226,7 @@
         } else {
             times.forEach((time, index) => {
                 if (index == 0 || clouds[time] !== clouds[times[index - 1]]) {
-                    forecast += ${getCloudDescription(clouds[time])} in the ${time}, ;
+                    forecast += `${getCloudDescription(clouds[time])} in the ${time}, `;
                 }
             });
         }
@@ -263,9 +234,6 @@
         return forecast;
     }
 
-
-
-    
     function getCloudDescription(level) {
         switch(level) {
             case 1: return 'sunny';
