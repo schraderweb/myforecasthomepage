@@ -217,13 +217,16 @@ function generateCloudsForecast(clouds) {
     const descriptions = times.map(time => getCloudDescription(clouds[time]));
     const firstCondition = clouds[times[0]];
     const allSame = times.every(time => clouds[time] === firstCondition);
-    const increasing = times.every(time => clouds[time + 'Increasing']);
-    const decreasing = times.every(time => clouds[time + 'Decreasing']);
 
-    if (increasing) {
-        forecast += 'Increasing clouds all day. ';
-    } else if (decreasing) {
-        forecast += 'Decreasing clouds all day. ';
+    const increasingCount = times.filter(time => clouds[time + 'Increasing']).length;
+    const decreasingCount = times.filter(time => clouds[time + 'Decreasing']).length;
+
+    if (increasingCount > 1) {
+        forecast += 'Increasing clouds throughout the day. ';
+    } else if (decreasingCount > 1) {
+        forecast += 'Decreasing clouds throughout the day. ';
+    } else if (clouds.morningIncreasing && (clouds.eveningDecreasing || clouds.nightDecreasing)) {
+        forecast += 'Increasing clouds in the morning, ' + descriptions[1] + ' in the afternoon or evening, and decreasing clouds throughout the day. ';
     } else if (allSame) {
         forecast += descriptions[0] + ' all day. ';
     } else {
@@ -259,6 +262,7 @@ function generateCloudsForecast(clouds) {
         }
         forecast += pattern;
     }
+
 
     return forecast;
 }
