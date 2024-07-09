@@ -220,20 +220,12 @@ function generateCloudsForecast(clouds) {
     const increasing = times.every(time => clouds[time + 'Increasing']);
     const decreasing = times.every(time => clouds[time + 'Decreasing']);
 
-    if (allSame && !increasing && !decreasing) {
-        forecast += descriptions[0] + ' all day. ';
-    } else if (increasing) {
-        if (allSame) {
-            forecast += 'Increasing ' + descriptions[0] + ' all day. ';
-        } else {
-            forecast += descriptions[0] + ' in the morning with increasing clouds through the day. ';
-        }
+    if (increasing) {
+        forecast += 'Increasing clouds all day. ';
     } else if (decreasing) {
-        if (allSame) {
-            forecast += 'Decreasing ' + descriptions[0] + ' all day. ';
-        } else {
-            forecast += descriptions[0] + ' in the morning with decreasing clouds through the day. ';
-        }
+        forecast += 'Decreasing clouds all day. ';
+    } else if (allSame) {
+        forecast += descriptions[0] + ' all day. ';
     } else {
         let pattern = '';
 
@@ -248,9 +240,9 @@ function generateCloudsForecast(clouds) {
         } else {
             times.forEach((time, index) => {
                 if (clouds[time + 'Increasing']) {
-                    forecast += descriptions[index] + ' in the ' + time + ', with increasing clouds. ';
+                    forecast += 'Increasing clouds in the ' + time + '. ';
                 } else if (clouds[time + 'Decreasing']) {
-                    forecast += descriptions[index] + ' in the ' + time + ', with decreasing clouds. ';
+                    forecast += 'Decreasing clouds in the ' + time + '. ';
                 } else if (index === 0 || descriptions[index] !== descriptions[index - 1]) {
                     forecast += descriptions[index] + ' in the ' + time + '. ';
                 }
@@ -267,8 +259,9 @@ function getCloudDescription(level) {
     switch(level) {
         case 1: return 'Sunny';
         case 2: return 'Partly Sunny';
-        case 3: return 'Mostly Cloudy';
-        case 4: return 'Cloudy';
+        case 3: return 'Partly Cloudy';
+        case 4: return 'Mostly Cloudy';
+        case 5: return 'Cloudy';
         default: return '';
     }
 }
