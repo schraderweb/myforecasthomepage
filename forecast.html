@@ -220,9 +220,27 @@
         if (clear) {
             forecast += 'Clearing skies, ';
         } else if (increase) {
-            forecast += 'Increasing clouds throughout the day, ';
+            if (clouds.morning < clouds.afternoon && clouds.afternoon < clouds.evening && clouds.evening < clouds.night) {
+                forecast += 'Increasing clouds all day, ';
+            } else {
+                times.forEach((time, index) => {
+                    if (index > 0 && clouds[time] > clouds[times[index - 1]]) {
+                        forecast += `Increasing clouds after the ${times[index - 1]}, `;
+                        return false; // break loop
+                    }
+                });
+            }
         } else if (decrease) {
-            forecast += 'Decreasing clouds throughout the day, ';
+            if (clouds.morning > clouds.afternoon && clouds.afternoon > clouds.evening && clouds.evening > clouds.night) {
+                forecast += 'Decreasing clouds all day, ';
+            } else {
+                times.forEach((time, index) => {
+                    if (index > 0 && clouds[time] < clouds[times[index - 1]]) {
+                        forecast += `Decreasing clouds after the ${times[index - 1]}, `;
+                        return false; // break loop
+                    }
+                });
+            }
         } else {
             times.forEach((time, index) => {
                 if (index == 0 || clouds[time] !== clouds[times[index - 1]]) {
