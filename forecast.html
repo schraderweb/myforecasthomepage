@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-<center>
+<center>    
 <h1>Weather Forecast Maker</h1>
 
 <div class="container">
@@ -159,7 +159,7 @@
 </center>
 <script>
     function togglePossible(time) {
-        const select = document.getElementById(`precipitation-${time}`);
+        const select = document.getElementById('precipitation-' + time);
         const selectedOption = select.options[select.selectedIndex];
         if (!selectedOption.value.startsWith('Possible ')) {
             selectedOption.value = 'Possible ' + selectedOption.value;
@@ -206,14 +206,16 @@
         let forecast = '';
 
         const times = ['morning', 'afternoon', 'evening', 'night'];
-        let lastCondition = clouds[times[0]];
+        const firstCondition = clouds[times[0]];
 
         if (clouds.trend !== 'none') {
-            forecast += `${capitalizeFirstLetter(clouds.trend)} clouds throughout the day, `;
+            forecast += capitalizeFirstLetter(clouds.trend) + ' clouds throughout the day, ';
+        } else if (times.every(time => clouds[time] === firstCondition)) {
+            forecast += getCloudDescription(firstCondition) + ' all day, ';
         } else {
             times.forEach((time, index) => {
                 if (index === 0 || clouds[time] !== clouds[times[index - 1]]) {
-                    forecast += `${getCloudDescription(clouds[time])} in the ${time}, `;
+                    forecast += getCloudDescription(clouds[time]) + ' in the ' + time + ', ';
                 }
             });
         }
@@ -223,11 +225,11 @@
 
     function getCloudDescription(level) {
         switch(level) {
-            case 1: return 'sunny';
-            case 2: return 'partly sunny';
-            case 3: return 'partly cloudy';
-            case 4: return 'mostly cloudy';
-            case 5: return 'cloudy';
+            case 1: return 'Sunny';
+            case 2: return 'Partly Sunny';
+            case 3: return 'Partly Cloudy';
+            case 4: return 'Mostly Cloudy';
+            case 5: return 'Cloudy';
             default: return '';
         }
     }
@@ -236,18 +238,17 @@
         let forecast = '';
 
         const times = ['morning', 'afternoon', 'evening', 'night'];
-        let lastCondition = '';
+        const firstCondition = precipitation[times[0]];
 
-        times.forEach((time, index) => {
-            if (precipitation[time] !== 'None' && precipitation[time] !== lastCondition) {
-                if (index > 0 && precipitation[time] !== precipitation[times[index - 1]]) {
-                    forecast += `then ${precipitation[time].toLowerCase()} in the ${time}, `;
-                } else {
-                    forecast += `${precipitation[time].toLowerCase()} in the ${time}, `;
+        if (times.every(time => precipitation[time] === firstCondition) && firstCondition !== 'None') {
+            forecast += firstCondition.toLowerCase() + ' all day, ';
+        } else {
+            times.forEach((time, index) => {
+                if (precipitation[time] !== 'None' && precipitation[time] !== precipitation[times[index - 1]]) {
+                    forecast += precipitation[time].toLowerCase() + ' in the ' + time + ', ';
                 }
-            }
-            lastCondition = precipitation[time];
-        });
+            });
+        }
 
         return forecast;
     }
@@ -256,12 +257,12 @@
         let forecast = '';
 
         if (speed > 0) {
-            forecast += `Winds ${speed} mph`;
+            forecast += 'Winds ' + speed + ' mph';
             if (direction) {
-                forecast += ` from the ${direction}`;
+                forecast += ' from the ' + direction;
             }
             if (gusts > 0) {
-                forecast += ` with gusts up to ${gusts} mph`;
+                forecast += ' with gusts up to ' + gusts + ' mph';
             }
             forecast += '. ';
         } else {
