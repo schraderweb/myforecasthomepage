@@ -216,26 +216,23 @@
         const times = ['morning', 'afternoon', 'evening', 'night'];
         const firstCondition = clouds[times[0]];
 
-        const allIncreasing = times.every(time => clouds[time + 'Increasing']);
-        const allDecreasing = times.every(time => clouds[time + 'Decreasing']);
+        const increasingIndices = times.filter(time => clouds[time + 'Increasing']);
+        const decreasingIndices = times.filter(time => clouds[time + 'Decreasing']);
 
-        if (allIncreasing) {
-            forecast += 'Increasing clouds throughout the day. ';
-        } else if (allDecreasing) {
-            forecast += 'Decreasing clouds throughout the day. ';
+        if (increasingIndices.length > 0) {
+            const start = increasingIndices[0];
+            const end = increasingIndices[increasingIndices.length - 1];
+            forecast += getCloudDescription(clouds[times[0]]) + ' in the morning and increasing clouds through the day. ';
+        } else if (decreasingIndices.length > 0) {
+            const start = decreasingIndices[0];
+            const end = decreasingIndices[decreasingIndices.length - 1];
+            forecast += getCloudDescription(clouds[times[0]]) + ' in the morning and decreasing clouds through the day. ';
         } else {
-            let startIndex = 0;
-            while (startIndex < times.length && !clouds[times[startIndex] + 'Increasing'] && !clouds[times[startIndex] + 'Decreasing']) {
-                startIndex++;
-            }
-            if (startIndex > 0) {
-                forecast += getCloudDescription(clouds[times[0]]) + ' in the morning, ';
-            }
-            if (clouds[times[startIndex] + 'Increasing']) {
-                forecast += 'increasing clouds throughout the day. ';
-            } else if (clouds[times[startIndex] + 'Decreasing']) {
-                forecast += 'decreasing clouds throughout the day. ';
-            }
+            times.forEach((time, index) => {
+                if (clouds[time] !== firstCondition) {
+                    forecast += getCloudDescription(clouds[time]) + ' in the ' + time + '. ';
+                }
+            });
         }
 
         return forecast;
