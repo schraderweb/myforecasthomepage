@@ -212,57 +212,57 @@ function generateForecast() {
 
 function generateCloudsForecast(clouds) {
     let forecast = '';
-
+    
     const times = ['morning', 'afternoon', 'evening', 'night'];
     const descriptions = times.map(time => getCloudDescription(clouds[time]));
     const firstCondition = clouds[times[0]];
     const allSame = times.every(time => clouds[time] === firstCondition);
-
+    
     const increasingCount = times.filter(time => clouds[time + 'Increasing']).length;
     const decreasingCount = times.filter(time => clouds[time + 'Decreasing']).length;
-
-    if (increasingCount > 1) {
-        forecast += 'Increasing clouds throughout the day. ';
-    } else if (decreasingCount > 1) {
-        forecast += 'Decreasing clouds throughout the day. ';
-    } else if (clouds.morningIncreasing && (clouds.eveningDecreasing || clouds.nightDecreasing)) {
-        forecast += 'Increasing clouds in the morning, ' + descriptions[1] + ' in the afternoon or evening, and decreasing clouds throughout the day. ';
-    } else if (allSame) {
-        forecast += descriptions[0] + ' all day. ';
+    
+    if (increasingCount === times.length) {
+        forecast = 'Increasing clouds all day.';
+    } else if (decreasingCount === times.length) {
+        forecast = 'Decreasing clouds all day.';
+    } else if (allSame && !increasingCount && !decreasingCount) {
+        forecast = descriptions[0] + ' all day.';
     } else {
         let pattern = '';
+        let lastCondition = descriptions[0];
+        let lastChange = 'none';
 
-        if (clouds.morningDecreasing && clouds.afternoonDecreasing && clouds.eveningDecreasing && clouds.nightDecreasing) {
-            pattern = descriptions[0] + ' in the morning with decreasing clouds through the day.';
-        } else if (clouds.afternoonDecreasing && clouds.eveningDecreasing && clouds.nightDecreasing) {
-            pattern = descriptions[0] + ' in the morning with decreasing clouds in the afternoon and evening.';
-        } else if (clouds.eveningDecreasing && clouds.nightDecreasing) {
-            pattern = descriptions[0] + ' throughout the day with decreasing clouds in the evening.';
-        } else if (clouds.nightDecreasing) {
-            pattern = descriptions[0] + ' all day with decreasing clouds through the night.';
-        } else if (clouds.morningIncreasing && clouds.afternoonIncreasing && clouds.eveningIncreasing && clouds.nightIncreasing) {
-            pattern = descriptions[0] + ' in the morning with increasing clouds through the day.';
-        } else if (clouds.afternoonIncreasing && clouds.eveningIncreasing && clouds.nightIncreasing) {
-            pattern = descriptions[0] + ' in the morning with increasing clouds in the afternoon and evening.';
-        } else if (clouds.eveningIncreasing && clouds.nightIncreasing) {
-            pattern = descriptions[0] + ' throughout the day with increasing clouds in the evening.';
-        } else if (clouds.nightIncreasing) {
-            pattern = descriptions[0] + ' all day with increasing clouds through the night.';
-        } else {
-            times.forEach((time, index) => {
-                if (clouds[time + 'Increasing']) {
-                    forecast += 'Increasing clouds in the ' + time + '. ';
-                } else if (clouds[time + 'Decreasing']) {
-                    forecast += 'Decreasing clouds in the ' + time + '. ';
-                } else if (index === 0 || descriptions[index] !== descriptions[index - 1]) {
-                    forecast += descriptions[index] + ' in the ' + time + '. ';
+        for (let i = 0; i < times.length; i++) {
+            let time = times[i];
+            let description = descriptions[i];
+
+            if (clouds[time + 'Increasing']) {
+                if (lastChange !== 'increasing') {
+                    if (lastChange !== 'none') {
+                        pattern += description + ' in the ' + time + ' with ';
+                    }
+                    pattern += 'increasing clouds ';
+                    lastChange = 'increasing';
                 }
-            });
-            return forecast;
+            } else if (clouds[time + 'Decreasing']) {
+                if (lastChange !== 'decreasing') {
+                    if (lastChange !== 'none') {
+                        pattern += description + ' in the ' + time + ' with ';
+                    }
+                    pattern += 'decreasing clouds ';
+                    lastChange = 'decreasing';
+                }
+            } else {
+                if (description !== lastCondition || i === 0) {
+                    pattern += description + ' in the ' + time + '. ';
+                    lastChange = 'none';
+                }
+                lastCondition = description;
+            }
         }
-        forecast += pattern;
-    }
 
+        forecast = pattern.trim();
+    }
 
     return forecast;
 }
