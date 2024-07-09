@@ -41,6 +41,8 @@
                 <option value="4">Mostly Cloudy</option>
                 <option value="5">Cloudy</option>
             </select>
+            <input type="checkbox" id="clouds-morning-increasing"> Increasing
+            <input type="checkbox" id="clouds-morning-decreasing"> Decreasing
         </label>
         <label>Afternoon: 
             <select id="clouds-afternoon">
@@ -50,6 +52,8 @@
                 <option value="4">Mostly Cloudy</option>
                 <option value="5">Cloudy</option>
             </select>
+            <input type="checkbox" id="clouds-afternoon-increasing"> Increasing
+            <input type="checkbox" id="clouds-afternoon-decreasing"> Decreasing
         </label>
         <label>Evening: 
             <select id="clouds-evening">
@@ -59,6 +63,8 @@
                 <option value="4">Mostly Cloudy</option>
                 <option value="5">Cloudy</option>
             </select>
+            <input type="checkbox" id="clouds-evening-increasing"> Increasing
+            <input type="checkbox" id="clouds-evening-decreasing"> Decreasing
         </label>
         <label>Night: 
             <select id="clouds-night">
@@ -68,13 +74,8 @@
                 <option value="4">Mostly Cloudy</option>
                 <option value="5">Cloudy</option>
             </select>
-        </label>
-        <label>Cloud Trend: 
-            <select id="cloud-trend">
-                <option value="none">None</option>
-                <option value="increasing">Increasing Clouds</option>
-                <option value="decreasing">Decreasing Clouds</option>
-            </select>
+            <input type="checkbox" id="clouds-night-increasing"> Increasing
+            <input type="checkbox" id="clouds-night-decreasing"> Decreasing
         </label>
     </div>
 
@@ -174,7 +175,14 @@
             afternoon: parseInt(document.getElementById('clouds-afternoon').value),
             evening: parseInt(document.getElementById('clouds-evening').value),
             night: parseInt(document.getElementById('clouds-night').value),
-            trend: document.getElementById('cloud-trend').value,
+            morningIncreasing: document.getElementById('clouds-morning-increasing').checked,
+            morningDecreasing: document.getElementById('clouds-morning-decreasing').checked,
+            afternoonIncreasing: document.getElementById('clouds-afternoon-increasing').checked,
+            afternoonDecreasing: document.getElementById('clouds-afternoon-decreasing').checked,
+            eveningIncreasing: document.getElementById('clouds-evening-increasing').checked,
+            eveningDecreasing: document.getElementById('clouds-evening-decreasing').checked,
+            nightIncreasing: document.getElementById('clouds-night-increasing').checked,
+            nightDecreasing: document.getElementById('clouds-night-decreasing').checked,
         };
 
         const precipitation = {
@@ -208,17 +216,17 @@
         const times = ['morning', 'afternoon', 'evening', 'night'];
         const firstCondition = clouds[times[0]];
 
-        if (clouds.trend !== 'none') {
-            forecast += 'Sunny in the morning with ' + clouds.trend + ' clouds throughout the day and sunny at night. ';
-        } else if (times.every(time => clouds[time] === firstCondition)) {
-            forecast += getCloudDescription(firstCondition) + ' all day, ';
-        } else {
-            times.forEach((time, index) => {
-                if (index === 0 || clouds[time] !== clouds[times[index - 1]]) {
-                    forecast += getCloudDescription(clouds[time]) + ' in the ' + time + ', ';
-                }
-            });
-        }
+        times.forEach((time, index) => {
+            let description = getCloudDescription(clouds[time]);
+
+            if (clouds[time + 'Increasing']) {
+                description += ' with increasing clouds';
+            } else if (clouds[time + 'Decreasing']) {
+                description += ' with decreasing clouds';
+            }
+
+            forecast += description + ' in the ' + time + ', ';
+        });
 
         return forecast;
     }
