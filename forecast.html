@@ -222,11 +222,11 @@
         if (increasingIndices.length > 0) {
             const start = increasingIndices[0];
             const end = increasingIndices[increasingIndices.length - 1];
-            forecast += getCloudDescription(clouds[times[start]]) + ' in the morning and increasing clouds through the day. ';
+            forecast += getCloudDescription(clouds[times[0]]) + ' in the morning and increasing clouds through the day. ';
         } else if (decreasingIndices.length > 0) {
             const start = decreasingIndices[0];
             const end = decreasingIndices[decreasingIndices.length - 1];
-            forecast += getCloudDescription(clouds[times[start]]) + ' in the morning and decreasing clouds through the day. ';
+            forecast += getCloudDescription(clouds[times[0]]) + ' in the morning and decreasing clouds through the day. ';
         } else {
             times.forEach((time, index) => {
                 if (clouds[time] !== firstCondition) {
