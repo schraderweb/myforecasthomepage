@@ -221,6 +221,51 @@
         return forecast;
     }
 
+
+
+   function generateCloudsForecast(clouds) {
+        let forecast = '';
+
+        const times = ['morning', 'afternoon', 'evening', 'night'];
+        let lastCondition = clouds[times[0]];
+        let increase = false, decrease = false, clear = false;
+
+        times.forEach((time, index) => {
+            if (index > 0) {
+                const levelDifference = clouds[time] - lastCondition;
+
+                if (levelDifference > 1) {
+                    increase = true;
+                } else if (levelDifference < -1) {
+                    decrease = true;
+                } else if (lastCondition > 2 && clouds[time] == 1) {
+                    clear = true;
+                }
+            }
+
+            lastCondition = clouds[time];
+        });
+
+        if (clear) {
+            forecast += 'Clearing skies, ';
+        } else if (increase) {
+            forecast += 'Increasing clouds throughout the day, ';
+        } else if (decrease) {
+            forecast += 'Decreasing clouds throughout the day, ';
+        } else {
+            times.forEach((time, index) => {
+                if (index == 0 || clouds[time] !== clouds[times[index - 1]]) {
+                    forecast += ${getCloudDescription(clouds[time])} in the ${time}, ;
+                }
+            });
+        }
+
+        return forecast;
+    }
+
+
+
+    
     function getCloudDescription(level) {
         switch(level) {
             case 1: return 'sunny';
