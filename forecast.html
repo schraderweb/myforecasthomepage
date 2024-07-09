@@ -159,15 +159,15 @@
 <p id="forecast"></p>
 </center>
 <script>
-    function togglePossible(time) {
-        const select = document.getElementById('precipitation-' + time);
-        const selectedOption = select.options[select.selectedIndex];
-        if (!selectedOption.value.startsWith('Possible ')) {
-            selectedOption.value = 'Possible ' + selectedOption.value;
-        } else {
-            selectedOption.value = selectedOption.value.replace('Possible ', '');
-        }
+   function togglePossible(time) {
+    const select = document.getElementById('precipitation-' + time);
+    const selectedOption = select.options[select.selectedIndex];
+    if (!selectedOption.value.startsWith('Possible ')) {
+        selectedOption.value = 'Possible ' + selectedOption.value;
+    } else {
+        selectedOption.value = selectedOption.value.replace('Possible ', '');
     }
+}
 
 function generateForecast() {
     const clouds = {
@@ -229,13 +229,21 @@ function generateCloudsForecast(clouds) {
     } else {
         let pattern = '';
 
-        if (descriptions[1] === descriptions[0] && descriptions[2] === descriptions[1] && clouds.eveningDecreasing && clouds.nightDecreasing) {
+        if (clouds.morningDecreasing && clouds.afternoonDecreasing && clouds.eveningDecreasing && clouds.nightDecreasing) {
+            pattern = descriptions[0] + ' in the morning with decreasing clouds through the day.';
+        } else if (clouds.afternoonDecreasing && clouds.eveningDecreasing && clouds.nightDecreasing) {
+            pattern = descriptions[0] + ' in the morning with decreasing clouds in the afternoon and evening.';
+        } else if (clouds.eveningDecreasing && clouds.nightDecreasing) {
             pattern = descriptions[0] + ' throughout the day with decreasing clouds in the evening.';
-        } else if (descriptions[1] === descriptions[0] && clouds.afternoonIncreasing && clouds.eveningIncreasing && clouds.nightIncreasing) {
-            pattern = descriptions[0] + ' in the morning with increasing clouds through the day.';
-        } else if (descriptions[1] === descriptions[0] && descriptions[2] === descriptions[1] && clouds.nightDecreasing) {
+        } else if (clouds.nightDecreasing) {
             pattern = descriptions[0] + ' all day with decreasing clouds through the night.';
-        } else if (descriptions[1] === descriptions[0] && descriptions[2] === descriptions[1] && clouds.nightIncreasing) {
+        } else if (clouds.morningIncreasing && clouds.afternoonIncreasing && clouds.eveningIncreasing && clouds.nightIncreasing) {
+            pattern = descriptions[0] + ' in the morning with increasing clouds through the day.';
+        } else if (clouds.afternoonIncreasing && clouds.eveningIncreasing && clouds.nightIncreasing) {
+            pattern = descriptions[0] + ' in the morning with increasing clouds in the afternoon and evening.';
+        } else if (clouds.eveningIncreasing && clouds.nightIncreasing) {
+            pattern = descriptions[0] + ' throughout the day with increasing clouds in the evening.';
+        } else if (clouds.nightIncreasing) {
             pattern = descriptions[0] + ' all day with increasing clouds through the night.';
         } else {
             times.forEach((time, index) => {
@@ -304,10 +312,10 @@ function generateWindForecast(speed, direction, gusts) {
     return forecast;
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 </script>
 
 </body>
