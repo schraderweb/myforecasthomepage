@@ -216,16 +216,24 @@ function generateForecast() {
 
 function generateCloudsForecast(clouds) {
     let forecast = '';
-    
+
     const times = ['morning', 'afternoon', 'evening', 'night'];
     const descriptions = times.map(time => getCloudDescription(clouds[time]));
     const firstCondition = clouds[times[0]];
     const allSame = times.every(time => clouds[time] === firstCondition);
-    
+
     const increasingCount = times.filter(time => clouds[time + 'Increasing']).length;
     const decreasingCount = times.filter(time => clouds[time + 'Decreasing']).length;
     
-    if (increasingCount === times.length) {
+    const lastTime = times[times.length - 1];
+    const anyIncreasingBeforeLast = times.slice(0, -1).some(time => clouds[time + 'Increasing']);
+    const anyDecreasingBeforeLast = times.slice(0, -1).some(time => clouds[time + 'Decreasing']);
+
+    if (clouds[lastTime + 'Increasing'] && anyIncreasingBeforeLast) {
+        forecast = spaceOutWords('Increasing clouds through the day.');
+    } else if (clouds[lastTime + 'Decreasing'] && anyDecreasingBeforeLast) {
+        forecast = spaceOutWords('Decreasing clouds through the day.');
+    } else if (increasingCount === times.length) {
         forecast = spaceOutWords('Increasing clouds all day.');
     } else if (decreasingCount === times.length) {
         forecast = spaceOutWords('Decreasing clouds all day.');
@@ -271,20 +279,6 @@ function generateCloudsForecast(clouds) {
     return forecast;
 }
 
-function getCloudDescription(level) {
-    switch(level) {
-        case 1: return 'Clear';
-        case 2: return 'Partly Sunny';
-        case 3: return 'Partly Cloudy';
-        case 4: return 'Mostly Cloudy';
-        case 5: return 'Cloudy';
-        default: return '';
-    }
-}
-
-function spaceOutWords(str) {
-    return str.split(' ').join('  ');
-}
 
 
 function generatePrecipitationForecast(precipitation) {
