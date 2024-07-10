@@ -163,7 +163,7 @@
 <p id="forecast"></p>
 </center>
 <script>
-   function togglePossible(time) {
+function togglePossible(time) {
     const select = document.getElementById('precipitation-' + time);
     const selectedOption = select.options[select.selectedIndex];
     if (!selectedOption.value.startsWith('Possible ')) {
@@ -226,11 +226,11 @@ function generateCloudsForecast(clouds) {
     const decreasingCount = times.filter(time => clouds[time + 'Decreasing']).length;
     
     if (increasingCount === times.length) {
-        forecast = spaceOutWords('Increasing clouds all day.');
+        forecast = 'Increasing clouds all day.';
     } else if (decreasingCount === times.length) {
-        forecast = spaceOutWords('Decreasing clouds all day.');
+        forecast = 'Decreasing clouds all day.';
     } else if (allSame && !increasingCount && !decreasingCount) {
-        forecast = spaceOutWords(descriptions[0] + ' all day.');
+        forecast = descriptions[0] + ' all day.';
     } else {
         let pattern = '';
         let lastCondition = descriptions[0];
@@ -265,7 +265,7 @@ function generateCloudsForecast(clouds) {
             }
         }
 
-        forecast = spaceOutWords(pattern.trim());
+        forecast = pattern.trim();
     }
 
     return forecast;
@@ -281,11 +281,6 @@ function getCloudDescription(level) {
         default: return '';
     }
 }
-
-function spaceOutWords(str) {
-    return str.split(' ').join('  ');
-}
-
 
 function generatePrecipitationForecast(precipitation) {
     let forecast = '';
