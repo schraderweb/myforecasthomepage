@@ -220,13 +220,13 @@ function generateCloudsForecast(clouds) {
     
     const increasingCount = times.filter(time => clouds[time + 'Increasing']).length;
     const decreasingCount = times.filter(time => clouds[time + 'Decreasing']).length;
-    
-    if (increasingCount === times.length) {
+
+    if (allSame && increasingCount === 0 && decreasingCount === 0) {
+        forecast = spaceOutWords(descriptions[0] + ' all day.');
+    } else if (increasingCount === times.length) {
         forecast = spaceOutWords('Increasing clouds all day.');
     } else if (decreasingCount === times.length) {
         forecast = spaceOutWords('Decreasing clouds all day.');
-    } else if (allSame && !increasingCount && !decreasingCount) {
-        forecast = spaceOutWords(descriptions[0] + ' all day.');
     } else {
         let pattern = '';
         let lastCondition = descriptions[0];
@@ -269,11 +269,10 @@ function generateCloudsForecast(clouds) {
 
 function getCloudDescription(level) {
     switch(level) {
-        case 1: return 'Clear';
+        case 1: return 'Sunny';
         case 2: return 'Partly Sunny';
-        case 3: return 'Partly Cloudy';
-        case 4: return 'Mostly Cloudy';
-        case 5: return 'Cloudy';
+        case 3: return 'Mostly Cloudy';
+        case 4: return 'Cloudy';
         default: return '';
     }
 }
@@ -281,7 +280,6 @@ function getCloudDescription(level) {
 function spaceOutWords(str) {
     return str.split(' ').join('  ');
 }
-
 
 function generatePrecipitationForecast(precipitation) {
     let forecast = '';
@@ -321,14 +319,6 @@ function generateWindForecast(speed, direction, gusts) {
     return forecast;
 }
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-</script>
-
-</body>
-</html>
 </script>
 
 </body>
