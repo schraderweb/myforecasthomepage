@@ -35,6 +35,7 @@
         <h2>Clouds</h2>
         <label>Morning: 
             <select id="clouds-morning">
+                <option value="1">Clear</option>
                 <option value="1">Sunny</option>
                 <option value="2">Partly Sunny</option>
                 <option value="2">Partly Cloudy</option>
@@ -46,6 +47,7 @@
         </label>
         <label>Afternoon: 
             <select id="clouds-afternoon">
+                <option value="1">Clear</option>
                 <option value="1">Sunny</option>
                 <option value="2">Partly Sunny</option>
                 <option value="2">Partly Cloudy</option>
@@ -57,7 +59,8 @@
         </label>
         <label>Evening: 
             <select id="clouds-evening">
-                 <option value="1">Sunny</option>
+                <option value="1">Clear</option>
+                <option value="1">Sunny</option>
                 <option value="2">Partly Sunny</option>
                 <option value="2">Partly Cloudy</option>
                 <option value="3">Mostly Cloudy</option>
@@ -68,7 +71,8 @@
         </label>
         <label>Night: 
             <select id="clouds-night">
-                 <option value="1">Sunny</option>
+                <option value="1">Clear</option>
+                <option value="1">Sunny</option>
                 <option value="2">Partly Sunny</option>
                 <option value="2">Partly Cloudy</option>
                 <option value="3">Mostly Cloudy</option>
@@ -269,7 +273,7 @@ function generateCloudsForecast(clouds) {
 
 function getCloudDescription(level) {
     switch(level) {
-        case 1: return 'Sunny';
+        case 1: return 'Clear';
         case 2: return 'Partly Sunny';
         case 3: return 'Partly Cloudy';
         case 4: return 'Mostly Cloudy';
